@@ -9,7 +9,7 @@
  
 <h2>Contact Manager</h2>
  
-<form:form method="post" action="/TNC/contact/add" commandName="contact">
+<form:form method="post" action="/tnc/contact/add" commandName="contact">
  
     <table>
     <tr>
