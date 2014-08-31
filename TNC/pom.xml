@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.tnc</groupId>
-	<artifactId>TNC</artifactId>
+	<artifactId>tnc</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>TNC Maven Webapp</name>
@@ -12,6 +12,7 @@
 		<springframework.version>3.2.9.RELEASE</springframework.version>
 		<hibernate.version>3.6.10.Final</hibernate.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<sitemesh.version>3.0-alpha-2</sitemesh.version>
 	</properties>
 
 	<dependencies>
@@ -55,7 +56,7 @@
 			<version>${springframework.version}</version>
 		</dependency>
 
-		<!-- Hibernate -->
+		<!-- Hibernate and database connection -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
@@ -79,16 +80,8 @@
 			<artifactId>commons-pool</artifactId>
 			<version>1.6</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.slf4j</groupId> -->
-<!-- 			<artifactId>slf4j-log4j12</artifactId> -->
-<!-- 			<version>1.4.2</version> -->
-<!-- 		</dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>taglibs</groupId> -->
-		<!-- <artifactId>standard</artifactId> -->
-		<!-- <version>1.1.2</version> -->
-		<!-- </dependency> -->
+
+		<!-- common -->
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -103,11 +96,18 @@
 			<version>1.2</version>
 		</dependency>
 
+		<!-- site-mesh -->
+		<dependency>
+			<groupId>org.sitemesh</groupId>
+			<artifactId>sitemesh</artifactId>
+			<version>${sitemesh.version}</version>
+		</dependency>
+
 	</dependencies>
 
 
 	<build>
-		<finalName>TNC</finalName>
+		<finalName>tnc</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -120,6 +120,30 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.0</version>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<url>http://localhost:8080/manager</url>
+					<server>localhost</server>
+					<path>/${project.build.finalName}</path>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+			</plugin>
+
 		</plugins>
 
 	</build>
