@@ -6,7 +6,27 @@
 
 <hibernate-configuration>
 	<session-factory>
+		<mapping class="com.tnc.domain.Booking" />
+		<mapping class="com.tnc.domain.Branch" />
 		<mapping class="com.tnc.domain.Contact" />
+		<mapping class="com.tnc.domain.Coupon" />
+		<mapping class="com.tnc.domain.District" />
+		<mapping class="com.tnc.domain.FilmCategory" />
+		<mapping class="com.tnc.domain.Member" />
+		<mapping class="com.tnc.domain.Movie" />
+		<mapping class="com.tnc.domain.MovieRate" />
+		<mapping class="com.tnc.domain.Promotion" />
+		<mapping class="com.tnc.domain.PromotionCriteria" />
+		<mapping class="com.tnc.domain.PromotionType" />
+		<mapping class="com.tnc.domain.Province" />
+		<mapping class="com.tnc.domain.SeatLayout" />
+		<mapping class="com.tnc.domain.Showtime" />
+		<mapping class="com.tnc.domain.ShowtimeSeat" />
+		<mapping class="com.tnc.domain.Theater" />
+		<mapping class="com.tnc.domain.TheaterLayout" />
+		<mapping class="com.tnc.domain.TheaterSystemType" />
+		<mapping class="com.tnc.domain.Ticket" />
+				
 	</session-factory>
 
 </hibernate-configuration>
