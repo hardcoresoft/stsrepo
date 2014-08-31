@@ -26,7 +26,7 @@ public class ContactController {
         map.put("contact", new Contact());
         map.put("contactList", contactService.listContact());
  
-        return "Contact";
+        return "contact/contact";
     }
  
     @RequestMapping(value = "/add", method = RequestMethod.POST)
