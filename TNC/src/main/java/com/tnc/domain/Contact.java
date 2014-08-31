@@ -1,34 +1,33 @@
 package com.tnc.domain;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "CONTACTS")
-public class Contact implements Serializable {
+public class Contact extends BaseDomain {
 
 	private static final long serialVersionUID = -2076664275120410047L;
 
 	@Id
 	@Column(name = "ID")
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "FIRSTNAME")
+	@Column(name = "FIRSTNAME", nullable = false, length = 100)
 	private String firstname;
 
-	@Column(name = "LASTNAME")
+	@Column(name = "LASTNAME", nullable = true, length = 100)
 	private String lastname;
 
-	@Column(name = "EMAIL")
+	@Column(name = "EMAIL", nullable = true, length = 100)
 	private String email;
 
-	@Column(name = "TELEPHONE")
+	@Column(name = "TELEPHONE", nullable = true, length = 100)
 	private String telephone;
 
 	public String getEmail() {
