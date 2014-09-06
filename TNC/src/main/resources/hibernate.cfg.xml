@@ -26,6 +26,9 @@
 		<mapping class="com.tnc.domain.TheaterLayout" />
 		<mapping class="com.tnc.domain.TheaterSystemType" />
 		<mapping class="com.tnc.domain.Ticket" />
+		
+		<!-- File Upload -->
+		<mapping class="com.tnc.domain.Document" />
 				
 	</session-factory>
 
