@@ -1,21 +1,29 @@
 package com.tnc.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "MOVIE_RATE")
-public class MovieRate {
+public class MovieRate extends BaseDomain {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6339214475839623615L;
 
 	@Id
 	@Column(name = "MOVIE_RATE_ID", length = 10, nullable = false)
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer movieRateId;
 
-	@Column(name = "MOVIE_RATE_NAME", length = 500, unique = true)
+	@Column(name = "MOVIE_RATE_NAME", length = 500)
 	private String movieRateName;
 	
 	@Column(name = "DESCRIPTION", length = 1000, nullable = true)
@@ -54,6 +62,12 @@ public class MovieRate {
 
 	public void setActiveStatus(boolean activeStatus) {
 		this.activeStatus = activeStatus;
+	}
+
+	@Override
+	public Serializable getId() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

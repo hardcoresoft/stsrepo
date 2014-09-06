@@ -1,11 +1,13 @@
 package com.tnc.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,11 +15,16 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "SHOWTIME_SEAT")
-public class ShowtimeSeat {
+public class ShowtimeSeat extends BaseDomain {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3131375816319727280L;
+
 	@Id
 	@Column(name = "SHOWTIME_SEAT_ID", length = 10, nullable = false)
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer showtimeSeatId;
 	
 	@Column(name = "SHOWTIME_SEAT_ROW", length = 10, nullable = false)
@@ -94,6 +101,12 @@ public class ShowtimeSeat {
 
 	public void setTheater(Theater theater) {
 		this.theater = theater;
+	}
+
+	@Override
+	public Serializable getId() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

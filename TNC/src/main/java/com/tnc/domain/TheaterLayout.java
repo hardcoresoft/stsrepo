@@ -1,21 +1,29 @@
 package com.tnc.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "THEATER_LAYOUT")
-public class TheaterLayout {
+public class TheaterLayout extends BaseDomain {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1306194445673604368L;
+
 	@Id
 	@Column(name = "THEATER_LAYOUT_ID", length = 10, nullable = false)
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer theaterLayoutId;
 	
-	@Column(name = "LAYOUT_NAME", length = 500, unique = true)
+	@Column(name = "LAYOUT_NAME", length = 500)
 	private String layoutName;
 
 	@Column(name = "DESCRIPTION", length = 1000, nullable = true)
@@ -65,6 +73,12 @@ public class TheaterLayout {
 
 	public void setActiveStatus(boolean activeStatus) {
 		this.activeStatus = activeStatus;
+	}
+
+	@Override
+	public Serializable getId() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

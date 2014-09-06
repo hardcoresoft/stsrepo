@@ -1,27 +1,34 @@
 package com.tnc.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "FILM_CATEGORY")
-public class FilmCategory {
+public class FilmCategory extends BaseDomain {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8720229342176183115L;
+
 	@Id
 	@Column(name = "FILMCAT_ID", length = 10, nullable = false)
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer filmcatId;
 
-	@Column(name = "FILM_CAT_NAME_TH", length = 500, unique = true)
+	@Column(name = "FILM_CAT_NAME_TH", length = 500)
 	private String filmCatNameTh;
 	
-	@Column(name = "FILM_CAT_NAME_EN", length = 500, unique = true)
+	@Column(name = "FILM_CAT_NAME_EN", length = 500)
 	private String filmCatNameEn;
 	
 	@Column(name = "DESCRIPTION", length = 1000, nullable = true)
@@ -79,6 +86,12 @@ public class FilmCategory {
 
 	public void setMovies(List<Movie> movies) {
 		this.movies = movies;
+	}
+
+	@Override
+	public Serializable getId() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

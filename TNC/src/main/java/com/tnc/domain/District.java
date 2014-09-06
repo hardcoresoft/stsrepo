@@ -1,9 +1,12 @@
 package com.tnc.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -11,11 +14,16 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "DISTRICT")
-public class District {
+public class District extends BaseDomain {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4502842402015034917L;
+
 	@Id
 	@Column(name = "DISTRICT_ID", length = 10, nullable = false)
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer districtId;
 
 	@Column(name = "DISTRICT_CODE", length = 10, unique = true)
@@ -69,6 +77,12 @@ public class District {
 
 	public void setProvince(Province province) {
 		this.province = province;
+	}
+
+	@Override
+	public Serializable getId() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

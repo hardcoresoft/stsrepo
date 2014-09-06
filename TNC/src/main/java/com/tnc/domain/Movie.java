@@ -1,5 +1,6 @@
 package com.tnc.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -24,20 +26,25 @@ import com.mysql.jdbc.Blob;
 
 @Entity
 @Table(name = "MOVIE")
-public class Movie {
+public class Movie extends BaseDomain {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3070802410582285089L;
 
 	@Id
 	@Column(name = "MOVIE_ID", length = 10, nullable = false)
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer movieId;
 
-	@Column(name = "MOVIE_NAME_TH", length = 500, unique = true)
+	@Column(name = "MOVIE_NAME_TH", length = 500)
 	private String movieNameTh;
 	
-	@Column(name = "MOVIE_NAME_EN", length = 500, unique = true)
+	@Column(name = "MOVIE_NAME_EN", length = 500)
 	private String movieNameEn;
 	
-	@Column(name = "MOVIE_NAME_DISPLAY", length = 500, unique = true)
+	@Column(name = "MOVIE_NAME_DISPLAY", length = 500)
 	private String movieNameDisplay;
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -188,6 +195,12 @@ public class Movie {
 
 	public void setFilmCategorys(List<FilmCategory> filmCategorys) {
 		this.filmCategorys = filmCategorys;
+	}
+
+	@Override
+	public Serializable getId() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

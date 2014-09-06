@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "CONTACTS")
-public class Contact extends BaseDomain {
+public class Contact {
 
 	private static final long serialVersionUID = -2076664275120410047L;
 

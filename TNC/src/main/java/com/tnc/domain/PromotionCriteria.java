@@ -1,9 +1,12 @@
 package com.tnc.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -11,14 +14,19 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "PROMOTION_CRITERIA")
-public class PromotionCriteria {
+public class PromotionCriteria extends BaseDomain {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8057735594820651649L;
+
 	@Id
 	@Column(name = "PROMOTION_CRITERIA_ID", length = 10, nullable = false)
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer promotionCriteriaId;
 
-	@Column(name = "CRITERIA_NAME", length = 500, unique = true)
+	@Column(name = "CRITERIA_NAME", length = 500)
 	private String criteriaName;
 
 	@Column(name = "DESCRIPTION", length = 1000, nullable = true)
@@ -30,8 +38,8 @@ public class PromotionCriteria {
 	@Column(name = "OPERAND", length = 10, nullable = false)
 	private String operand;
 	
-	@Column(name = "CONDITION", length = 500, nullable = false)
-	private String condition;
+	@Column(name = "PROMOTION_CONDITION", length = 500, nullable = false)
+	private String promotionCondition;
 	
 	@Column(name = "ACTIVE_STATUS", nullable = false)
 	private boolean activeStatus;
@@ -80,14 +88,6 @@ public class PromotionCriteria {
 		this.operand = operand;
 	}
 
-	public String getCondition() {
-		return condition;
-	}
-
-	public void setCondition(String condition) {
-		this.condition = condition;
-	}
-
 	public boolean isActiveStatus() {
 		return activeStatus;
 	}
@@ -102,6 +102,20 @@ public class PromotionCriteria {
 
 	public void setPromotion(Promotion promotion) {
 		this.promotion = promotion;
+	}
+
+	public String getPromotionCondition() {
+		return promotionCondition;
+	}
+
+	public void setPromotionCondition(String promotionCondition) {
+		this.promotionCondition = promotionCondition;
+	}
+
+	@Override
+	public Serializable getId() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

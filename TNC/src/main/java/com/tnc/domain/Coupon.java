@@ -1,11 +1,13 @@
 package com.tnc.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,14 +17,19 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "COUPON")
-public class Coupon {
+public class Coupon extends BaseDomain {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3427260239163818605L;
+
 	@Id
 	@Column(name = "COUPON_ID", length = 10, nullable = false)
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer couponId;
 	
-	@Column(name = "COUPON_CODE", length = 10, unique = true)
+	@Column(name = "COUPON_CODE", length = 10)
 	private String couponCode;
 	
 	@Column(name = "USAGE_STATUS", nullable = false)
@@ -86,6 +93,12 @@ public class Coupon {
 
 	public void setBooking(Booking booking) {
 		this.booking = booking;
+	}
+
+	@Override
+	public Serializable getId() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

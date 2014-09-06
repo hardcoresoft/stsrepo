@@ -1,21 +1,29 @@
 package com.tnc.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "BRANCH")
-public class Branch {
+public class Branch extends BaseDomain {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6958624592780700168L;
+
 	@Id
 	@Column(name = "BRANCH_CODE", length = 10, nullable = false)
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer branchCode;
 	
-	@Column(name = "BRANCH_NAME", length = 500, unique = true)
+	@Column(name = "BRANCH_NAME", length = 500)
 	private String branchName;
 	
 	@Column(name = "IS_MAIN_BRANCH", nullable = false)
@@ -65,6 +73,12 @@ public class Branch {
 
 	public void setActiveStatus(boolean activeStatus) {
 		this.activeStatus = activeStatus;
+	}
+
+	@Override
+	public Serializable getId() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

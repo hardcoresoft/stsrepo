@@ -1,11 +1,13 @@
 package com.tnc.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,11 +17,16 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "MEMBER")
-public class Member {
+public class Member extends BaseDomain {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7032594247755853200L;
+
 	@Id
 	@Column(name = "MEMBER_ID", length = 10, nullable = false)
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer memberId;
 
 	@Column(name = "MEMBER_CODE", length = 10, unique = true)
@@ -208,6 +215,12 @@ public class Member {
 
 	public void setDistrict(District district) {
 		this.district = district;
+	}
+
+	@Override
+	public Serializable getId() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
