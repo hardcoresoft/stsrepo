@@ -2,7 +2,6 @@ package com.tnc.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
@@ -15,7 +14,7 @@ import com.tnc.utils.StringUtils;
 @RequestMapping("/sendEmail.do")
 public class SendEmailController {
  
-    @Autowired
+//    @Autowired
     private JavaMailSender mailSender;
      
     @RequestMapping(method = RequestMethod.POST)
