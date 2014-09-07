@@ -37,6 +37,9 @@ public class Movie extends BaseDomain {
 	@Column(name = "MOVIE_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer movieId;
+	
+	@Column(name = "MOVIE_CODE", length = 10, unique = true)
+	private String movieCode;
 
 	@Column(name = "MOVIE_NAME_TH", length = 500)
 	private String movieNameTh;
