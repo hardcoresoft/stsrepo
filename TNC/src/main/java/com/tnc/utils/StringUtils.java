@@ -19,36 +19,14 @@ public class StringUtils {
 		if (str == null) return "";
 		try 
 		{
-			ostr = new String(str.getBytes("MS874"),"ISO8859_1");
+			ostr = new String(str.getBytes("ISO-8859-1"),"UTF-8");
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
 		return ostr;		
-/*		String ostr="";
-		if(str!=null)
-		{
-		try
-		{
-			byte[] test=str.getBytes();
-			for(int i=0;i<test.length;i++)
-			{
-				System.out.printf("%H\n", test[i]);
-				if(test[i]==63)
-				{
-					ostr=new String(str.getBytes("ISO8859_1"),"MS874");
-					return ostr;
-				}
-			}
-			
-		}
-		catch (Exception e)
-		{
-			//
-		}
-		}
-		return str;*/
+
 	}
 	
 	public static String removeControlString(String str)
@@ -81,29 +59,6 @@ public class StringUtils {
 			e.printStackTrace();
 		}
 		return ostr;		
-/*		String ostr="";
-		if(str!=null)
-		{
-		try
-		{
-			byte[] test=str.getBytes();
-			for(int i=0;i<test.length;i++)
-			{
-				System.out.printf("%H\n", test[i]);
-				if(test[i]==63)
-				{
-					ostr=new String(str.getBytes("ISO8859_1"),"MS874");
-					return ostr;
-				}
-			}
-			
-		}
-		catch (Exception e)
-		{
-			//
-		}
-		}
-		return str;*/
 	}
 
 	public String formatDate(Date val, String format){
@@ -126,6 +81,7 @@ public class StringUtils {
 	public String formatDate(Timestamp val, String format){
 		return formatDateDef(val, format, "");
 	}
+	
 	/*
 	public String formatDateDef(Timestamp val, String format, String def){
 		//String buf = "";
@@ -139,6 +95,7 @@ public class StringUtils {
 		}
 	}
 	*/
+	
 	public String formatDate(java.util.Date val, String format) {
 		return formatDateDef(val, format, "");
 	}
@@ -318,7 +275,7 @@ public class StringUtils {
 	
 	public static void main(String[] args)
 	{
-		String thai = "เทสเทสเทส";
+		String thai = "à¹à¸à¸ª à¸­à¸µà¹à¸¡";
 		 System.out.println(StringUtils.getThai(thai));
 	}
 	
