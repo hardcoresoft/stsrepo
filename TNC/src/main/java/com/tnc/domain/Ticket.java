@@ -22,7 +22,7 @@ public class Ticket extends BaseDomain {
 	private static final long serialVersionUID = -2887640778939782598L;
 
 	@Id
-	@Column(name = "TICKET_ID", length = 10, nullable = false)
+	@Column(name = "TICKET_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer ticketId;
 	

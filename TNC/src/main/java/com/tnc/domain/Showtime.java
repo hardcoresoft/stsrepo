@@ -25,7 +25,7 @@ public class Showtime extends BaseDomain {
 	private static final long serialVersionUID = 9045134732385304629L;
 
 	@Id
-	@Column(name = "SHOWTIME_ID", nullable = false)
+	@Column(name = "SHOWTIME_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer showtimeId;
 	
@@ -36,7 +36,7 @@ public class Showtime extends BaseDomain {
 	@Column(name = "LANGUAGE", length = 100, nullable = false)
 	private String language;
 	
-	@Column(name = "DESCRIPTION", length = 1000, nullable = true)
+	@Column(name = "DESCRIPTION", length = 1000)
 	private String descriptyion;
 	
 	@Column(name = "ACTIVE_STATUS", nullable = false)

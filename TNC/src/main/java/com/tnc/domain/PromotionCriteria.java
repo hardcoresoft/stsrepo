@@ -22,14 +22,14 @@ public class PromotionCriteria extends BaseDomain {
 	private static final long serialVersionUID = -8057735594820651649L;
 
 	@Id
-	@Column(name = "PROMOTION_CRITERIA_ID", length = 10, nullable = false)
+	@Column(name = "PROMOTION_CRITERIA_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer promotionCriteriaId;
 
 	@Column(name = "CRITERIA_NAME", length = 500)
 	private String criteriaName;
 
-	@Column(name = "DESCRIPTION", length = 1000, nullable = true)
+	@Column(name = "DESCRIPTION", length = 1000)
 	private String descriptyion;
 	
 	@Column(name = "CRITERIA_TYPE", length = 500, nullable = false)

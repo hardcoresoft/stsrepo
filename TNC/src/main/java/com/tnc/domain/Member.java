@@ -25,7 +25,7 @@ public class Member extends BaseDomain {
 	private static final long serialVersionUID = 7032594247755853200L;
 
 	@Id
-	@Column(name = "MEMBER_ID", length = 10, nullable = false)
+	@Column(name = "MEMBER_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer memberId;
 
@@ -38,40 +38,40 @@ public class Member extends BaseDomain {
 	@Column(name = "LAST_NAME", length = 500, nullable = false)
 	private String lastName;
 	
-	@Column(name = "NICK_NAME", length = 100, nullable = true)
+	@Column(name = "NICK_NAME", length = 100)
 	private String nickName;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "DATE_OF_BIRTH", nullable = false)
 	private Date dateOfBirth;
 
-	@Column(name = "TELEPHONE_NO", length = 10, nullable = true)
+	@Column(name = "TELEPHONE_NO", length = 10)
 	private String telephoneNo;
 
-	@Column(name = "EMAIL_ADDRESS", length = 500, nullable = true)
+	@Column(name = "EMAIL_ADDRESS", length = 500)
 	private String emailAddress;
 	
-	@Column(name = "ADDRESS_LINE1", length = 500, nullable = true)
+	@Column(name = "ADDRESS_LINE1", length = 500)
 	private String addressLine1;
 	
-	@Column(name = "ADDRESS_LINE2", length = 500, nullable = true)
+	@Column(name = "ADDRESS_LINE2", length = 500)
 	private String addressLine2;
 	
-	@Column(name = "ADDITIONAL_ADDRESS", length = 500, nullable = true)
+	@Column(name = "ADDITIONAL_ADDRESS", length = 500)
 	private String additionalAddress;
 	
-	@Column(name = "SUB_DISTRICT", length = 500, nullable = true)
+	@Column(name = "SUB_DISTRICT", length = 500)
 	private String subDistrict;
 	
 	@Column(name = "ACTIVE_STATUS", nullable = false)
 	private boolean activeStatus;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "EFFECTIVE_DATE", nullable = true)
+	@Column(name = "EFFECTIVE_DATE")
 	private Date effectiveDate;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "EXPIRATION_DATE", nullable = true)
+	@Column(name = "EXPIRATION_DATE")
 	private Date expirationDate;
 
 	@Column(name = "CONTACT_CHANNEL", length = 500, nullable = false)

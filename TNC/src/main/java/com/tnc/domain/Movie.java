@@ -34,7 +34,7 @@ public class Movie extends BaseDomain {
 	private static final long serialVersionUID = -3070802410582285089L;
 
 	@Id
-	@Column(name = "MOVIE_ID", length = 10, nullable = false)
+	@Column(name = "MOVIE_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer movieId;
 
@@ -58,17 +58,17 @@ public class Movie extends BaseDomain {
 	@Column(name = "DURATION", nullable = false)
 	private Integer duration;
 	
-	@Column(name = "MOVIE_IMAGE", nullable = true)
+	@Column(name = "MOVIE_IMAGE")
 	@Lob
 	private Blob movieImage;
 	
-	@Column(name = "SYNOPSIS", length = 2000, nullable = true)
+	@Column(name = "SYNOPSIS", length = 2000)
 	private String synopsis;
 	
-	@Column(name = "DIRECTOR", length = 500, nullable = true)
+	@Column(name = "DIRECTOR", length = 500)
 	private String director;
 	
-	@Column(name = "ACTOR", length = 500, nullable = true)
+	@Column(name = "ACTOR", length = 500)
 	private String actor;
 	
 	@Column(name = "ACTIVE_STATUS", nullable = false)

@@ -19,14 +19,14 @@ public class TheaterLayout extends BaseDomain {
 	private static final long serialVersionUID = -1306194445673604368L;
 
 	@Id
-	@Column(name = "THEATER_LAYOUT_ID", length = 10, nullable = false)
+	@Column(name = "THEATER_LAYOUT_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer theaterLayoutId;
 	
 	@Column(name = "LAYOUT_NAME", length = 500)
 	private String layoutName;
 
-	@Column(name = "DESCRIPTION", length = 1000, nullable = true)
+	@Column(name = "DESCRIPTION", length = 1000)
 	private String descriptyion;
 	
 	@Column(name = "SEAT_AMOUNT", length = 10, nullable = false)

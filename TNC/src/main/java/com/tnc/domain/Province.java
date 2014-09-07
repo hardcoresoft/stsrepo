@@ -19,7 +19,7 @@ public class Province extends BaseDomain {
 	private static final long serialVersionUID = -7623963654799857076L;
 
 	@Id
-	@Column(name = "PROVINCE_ID", length = 10, nullable = false)
+	@Column(name = "PROVINCE_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer provinceId;
 

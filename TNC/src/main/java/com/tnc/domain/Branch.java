@@ -19,7 +19,7 @@ public class Branch extends BaseDomain {
 	private static final long serialVersionUID = -6958624592780700168L;
 
 	@Id
-	@Column(name = "BRANCH_CODE", length = 10, nullable = false)
+	@Column(name = "BRANCH_CODE")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer branchCode;
 	
@@ -29,7 +29,7 @@ public class Branch extends BaseDomain {
 	@Column(name = "IS_MAIN_BRANCH", nullable = false)
 	private boolean isMainBranch;
 	
-	@Column(name = "DESCRIPTION", length = 1000, nullable = true)
+	@Column(name = "DESCRIPTION", length = 1000)
 	private String descriptyion;
 	
 	@Column(name = "ACTIVE_STATUS", nullable = false)

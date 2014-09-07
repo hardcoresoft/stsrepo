@@ -22,14 +22,14 @@ public class Theater extends BaseDomain {
 	private static final long serialVersionUID = -5505810085568974970L;
 
 	@Id
-	@Column(name = "THEATER_ID", length = 10, nullable = false)
+	@Column(name = "THEATER_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer theaterId;
 	
 	@Column(name = "THEATER_NAME", length = 500)
 	private String theaterName;
 
-	@Column(name = "DESCRIPTION", length = 1000, nullable = true)
+	@Column(name = "DESCRIPTION", length = 1000)
 	private String descriptyion;
 	
 	@Column(name = "ACTIVE_STATUS", nullable = false)

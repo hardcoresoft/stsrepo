@@ -23,7 +23,7 @@ public class SeatLayout extends BaseDomain {
 	private static final long serialVersionUID = -8736312288968840132L;
 
 	@Id
-	@Column(name = "SEAT_LAYOUT_ID", length = 10, nullable = false)
+	@Column(name = "SEAT_LAYOUT_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer seatLayoutId;
 	
@@ -36,7 +36,7 @@ public class SeatLayout extends BaseDomain {
 	@Column(name = "PRICE", precision = 19, scale = 2, nullable = false)
 	private BigDecimal price;
 	
-	@Column(name = "DESCRIPTION", length = 1000, nullable = true)
+	@Column(name = "DESCRIPTION", length = 1000)
 	private String descriptyion;
 	
 	@Column(name = "ACTIVE_STATUS", nullable = false)

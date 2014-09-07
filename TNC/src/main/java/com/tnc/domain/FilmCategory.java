@@ -21,7 +21,7 @@ public class FilmCategory extends BaseDomain {
 	private static final long serialVersionUID = -8720229342176183115L;
 
 	@Id
-	@Column(name = "FILMCAT_ID", length = 10, nullable = false)
+	@Column(name = "FILMCAT_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer filmcatId;
 
@@ -31,7 +31,7 @@ public class FilmCategory extends BaseDomain {
 	@Column(name = "FILM_CAT_NAME_EN", length = 500)
 	private String filmCatNameEn;
 	
-	@Column(name = "DESCRIPTION", length = 1000, nullable = true)
+	@Column(name = "DESCRIPTION", length = 1000)
 	private String descriptyion;
 	
 	@Column(name = "ACTIVE_STATUS", nullable = false)

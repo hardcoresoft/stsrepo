@@ -22,7 +22,7 @@ public class District extends BaseDomain {
 	private static final long serialVersionUID = -4502842402015034917L;
 
 	@Id
-	@Column(name = "DISTRICT_ID", length = 10, nullable = false)
+	@Column(name = "DISTRICT_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer districtId;
 

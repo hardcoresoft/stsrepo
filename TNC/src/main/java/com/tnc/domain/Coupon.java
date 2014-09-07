@@ -25,7 +25,7 @@ public class Coupon extends BaseDomain {
 	private static final long serialVersionUID = 3427260239163818605L;
 
 	@Id
-	@Column(name = "COUPON_ID", length = 10, nullable = false)
+	@Column(name = "COUPON_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer couponId;
 	
@@ -36,7 +36,7 @@ public class Coupon extends BaseDomain {
 	private boolean usageStatus;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "EXPIRATION_DATE", nullable = true)
+	@Column(name = "EXPIRATION_DATE")
 	private Date expirationDate;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

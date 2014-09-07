@@ -26,7 +26,7 @@ public class Booking extends BaseDomain {
 	private static final long serialVersionUID = 6672817921189104896L;
 
 	@Id
-	@Column(name = "BOOKING_ID", length = 10, nullable = false)
+	@Column(name = "BOOKING_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer bookingId;
 	
@@ -43,10 +43,10 @@ public class Booking extends BaseDomain {
 	@Column(name = "TOTAL_PRICE", precision = 19, scale = 2, nullable = false)
 	private BigDecimal totalPrice;
 	
-	@Column(name = "PERCENT_DISCOUNT", length = 10, nullable = true)
+	@Column(name = "PERCENT_DISCOUNT", length = 10)
 	private Integer percentDiscount;
 	
-	@Column(name = "DISCOUNT_AMOUNT", precision = 19, scale = 2, nullable = true)
+	@Column(name = "DISCOUNT_AMOUNT", precision = 19, scale = 2)
 	private BigDecimal discountAmount;
 	
 	@Column(name = "NET_TOTAL", precision = 19, scale = 2, nullable = false)

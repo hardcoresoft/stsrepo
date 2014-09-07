@@ -19,14 +19,14 @@ public class PromotionType extends BaseDomain {
 	private static final long serialVersionUID = 8107443642796764757L;
 
 	@Id
-	@Column(name = "PROMOTION_TYPE_ID", length = 10, nullable = false)
+	@Column(name = "PROMOTION_TYPE_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer promotionTypeId;
 	
 	@Column(name = "PROMOTION_TYPE_NAME", length = 500)
 	private String promotionTypeName;
 
-	@Column(name = "DESCRIPTION", length = 1000, nullable = true)
+	@Column(name = "DESCRIPTION", length = 1000)
 	private String descriptyion;
 	
 	@Column(name = "ACTIVE_STATUS", nullable = false)

@@ -23,7 +23,7 @@ public class ShowtimeSeat extends BaseDomain {
 	private static final long serialVersionUID = -3131375816319727280L;
 
 	@Id
-	@Column(name = "SHOWTIME_SEAT_ID", length = 10, nullable = false)
+	@Column(name = "SHOWTIME_SEAT_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer showtimeSeatId;
 	

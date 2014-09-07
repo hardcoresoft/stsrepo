@@ -19,14 +19,14 @@ public class TheaterSystemType extends BaseDomain {
 	private static final long serialVersionUID = -1931154128670139097L;
 
 	@Id
-	@Column(name = "THEATER_SYSTEM_ID", length = 10, nullable = false)
+	@Column(name = "THEATER_SYSTEM_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer theaterSystemId;
 	
 	@Column(name = "SYSTEM_NAME", length = 500)
 	private String systemName;
 
-	@Column(name = "DESCRIPTION", length = 1000, nullable = true)
+	@Column(name = "DESCRIPTION", length = 1000)
 	private String descriptyion;
 	
 	@Column(name = "ACTIVE_STATUS", nullable = false)

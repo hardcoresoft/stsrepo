@@ -19,14 +19,14 @@ public class MovieRate extends BaseDomain {
 	private static final long serialVersionUID = 6339214475839623615L;
 
 	@Id
-	@Column(name = "MOVIE_RATE_ID", length = 10, nullable = false)
+	@Column(name = "MOVIE_RATE_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer movieRateId;
 
 	@Column(name = "MOVIE_RATE_NAME", length = 500)
 	private String movieRateName;
 	
-	@Column(name = "DESCRIPTION", length = 1000, nullable = true)
+	@Column(name = "DESCRIPTION", length = 1000)
 	private String descriptyion;
 	
 	@Column(name = "ACTIVE_STATUS", nullable = false)

@@ -29,14 +29,14 @@ public class Promotion extends BaseDomain {
 	private static final long serialVersionUID = -4517976294044935126L;
 
 	@Id
-	@Column(name = "PROMOTION_ID", length = 10, nullable = false)
+	@Column(name = "PROMOTION_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer promotionId;
 
 	@Column(name = "PROMOTION_NAME", length = 500)
 	private String promotionName;
 
-	@Column(name = "DESCRIPTION", length = 1000, nullable = true)
+	@Column(name = "DESCRIPTION", length = 1000)
 	private String descriptyion;
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -48,13 +48,13 @@ public class Promotion extends BaseDomain {
 	private Date expirationDate;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "TERMINATED_DATE", nullable = true)
+	@Column(name = "TERMINATED_DATE")
 	private Date terminatedDate;
 	
-	@Column(name = "IS_TERMINATE", nullable = true)
+	@Column(name = "IS_TERMINATE")
 	private boolean isTerminate;
 	
-	@Column(name = "IS_PRINT_COUPON", nullable = true)
+	@Column(name = "IS_PRINT_COUPON")
 	private boolean isPrintCoupon;
 	
 	@Column(name = "ACTIVE_STATUS", nullable = false)
