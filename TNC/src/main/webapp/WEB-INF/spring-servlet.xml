@@ -37,14 +37,20 @@
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 	
-	<bean id="propertyConfigurer"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-		p:location="/WEB-INF/database.properties" />
-
+	<bean id="propertyConfigurer" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+	  <property name="locations">
+	  	<list>
+	  		<value>classpath:database.properties</value>
+	  		<value>classpath:email.properties</value>
+	  	</list>
+	  </property>
+	  <property name="ignoreUnresolvablePlaceholders" value="true"/>
+	  <property name="ignoreResourceNotFound" value="true" />
+	</bean>
+		
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close" p:driverClassName="${jdbc.driverClassName}"
 		p:url="${jdbc.databaseurl}" p:username="${jdbc.username}" p:password="${jdbc.password}" />
-
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
@@ -81,10 +87,10 @@
     
     <!-- Send Mail -->
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        <property name="host" value="smtp.gmail.com" />
-        <property name="port" value="587" />
-        <property name="username" value="cpukaitong15@gmail.com" />
-        <property name="password" value="P@ssw0rd2533" />
+        <property name="host" value="${smtp.host}" />
+        <property name="port" value="${smtp.port}" />
+        <property name="username" value="${smtp.user}" />
+        <property name="password" value="${smtp.pass}" />
         <property name="javaMailProperties">
             <props>
                 <prop key="mail.transport.protocol">smtp</prop>
