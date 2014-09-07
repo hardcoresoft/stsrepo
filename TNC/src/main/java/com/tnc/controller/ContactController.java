@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.tnc.domain.Contact;
 import com.tnc.service.ContactService;
@@ -21,12 +22,16 @@ public class ContactController {
     private ContactService contactService;
  
     @RequestMapping("/index")
-    public String listContacts(Map<String, Object> map) {
+    public ModelAndView listContacts(Map<String, Object> map) {
+    	
+    	ModelAndView modelAndView = new ModelAndView("contact/contact");
+    	modelAndView.addObject("contact", new Contact());
+    	modelAndView.addObject("contactList", contactService.listContact());
  
-        map.put("contact", new Contact());
-        map.put("contactList", contactService.listContact());
+//        map.put("contact", new Contact());
+//        map.put("contactList", contactService.listContact());
  
-        return "contact/contact";
+        return modelAndView;
     }
  
     @RequestMapping(value = "/add", method = RequestMethod.POST)

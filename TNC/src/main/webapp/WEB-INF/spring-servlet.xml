@@ -15,11 +15,14 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
+	<mvc:annotation-driven/>
+	
 	<context:annotation-config />
+	
 	<context:component-scan base-package="com.tnc" />
 	
-<!-- 	<mvc:resources mapping="/resources/**" location="/resources/" />  -->
-
+	<mvc:resources mapping="/resources/**" location="classpath:/resources" />
+	
 	<bean id="jspViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
@@ -33,9 +36,10 @@
 		<property name="basename" value="classpath:messages" />
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
+	
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-		p:location="/WEB-INF/application.properties" />
+		p:location="/WEB-INF/database.properties" />
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close" p:driverClassName="${jdbc.driverClassName}"
@@ -89,6 +93,5 @@
             </props>
         </property>
     </bean>
-
 
 </beans>
