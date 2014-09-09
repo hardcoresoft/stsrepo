@@ -18,16 +18,16 @@ public class Contact {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "FIRSTNAME", nullable = false, length = 100)
+	@Column(name = "FIRSTNAME", length = 100)
 	private String firstname;
 
-	@Column(name = "LASTNAME", nullable = true, length = 100)
+	@Column(name = "LASTNAME", length = 100)
 	private String lastname;
 
-	@Column(name = "EMAIL", nullable = true, length = 100)
+	@Column(name = "EMAIL", length = 100)
 	private String email;
 
-	@Column(name = "TELEPHONE", nullable = true, length = 100)
+	@Column(name = "TELEPHONE", length = 100)
 	private String telephone;
 
 	public String getEmail() {

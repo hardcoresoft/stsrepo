@@ -26,13 +26,13 @@ public class Branch extends BaseDomain {
 	@Column(name = "BRANCH_NAME", length = 500)
 	private String branchName;
 	
-	@Column(name = "IS_MAIN_BRANCH", nullable = false)
+	@Column(name = "IS_MAIN_BRANCH")
 	private boolean isMainBranch;
 	
 	@Column(name = "DESCRIPTION", length = 1000)
 	private String descriptyion;
 	
-	@Column(name = "ACTIVE_STATUS", nullable = false)
+	@Column(name = "ACTIVE_STATUS")
 	private boolean activeStatus;
 
 	public Integer getBranchCode() {

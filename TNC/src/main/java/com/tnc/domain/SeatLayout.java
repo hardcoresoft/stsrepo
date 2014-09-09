@@ -27,19 +27,19 @@ public class SeatLayout extends BaseDomain {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer seatLayoutId;
 	
-	@Column(name = "SEAT_ROW", length = 10, nullable = false)
+	@Column(name = "SEAT_ROW", length = 10)
 	private String seatRow;
 	
-	@Column(name = "SEAT_COLRUMN", length = 10, nullable = false)
+	@Column(name = "SEAT_COLRUMN", length = 10)
 	private String seatColumn;
 	
-	@Column(name = "PRICE", precision = 19, scale = 2, nullable = false)
+	@Column(name = "PRICE", precision = 19, scale = 2)
 	private BigDecimal price;
 	
 	@Column(name = "DESCRIPTION", length = 1000)
 	private String descriptyion;
 	
-	@Column(name = "ACTIVE_STATUS", nullable = false)
+	@Column(name = "ACTIVE_STATUS")
 	private boolean activeStatus;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

@@ -31,16 +31,16 @@ public class Booking extends BaseDomain {
 	private Integer bookingId;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "BOOKING_DATETIME", nullable = false)
+	@Column(name = "BOOKING_DATETIME")
 	private Date bookingDatetime;
 	
-	@Column(name = "BOOKING_SEAT_AMOUNT", length = 10, nullable = false)
+	@Column(name = "BOOKING_SEAT_AMOUNT", length = 10)
 	private Integer bookingSeatAmount;
 	
-	@Column(name = "TOTAL_TICKET", length = 10, nullable = false)
+	@Column(name = "TOTAL_TICKET", length = 10)
 	private Integer totalTicket;
 	
-	@Column(name = "TOTAL_PRICE", precision = 19, scale = 2, nullable = false)
+	@Column(name = "TOTAL_PRICE", precision = 19, scale = 2)
 	private BigDecimal totalPrice;
 	
 	@Column(name = "PERCENT_DISCOUNT", length = 10)
@@ -49,13 +49,13 @@ public class Booking extends BaseDomain {
 	@Column(name = "DISCOUNT_AMOUNT", precision = 19, scale = 2)
 	private BigDecimal discountAmount;
 	
-	@Column(name = "NET_TOTAL", precision = 19, scale = 2, nullable = false)
+	@Column(name = "NET_TOTAL", precision = 19, scale = 2)
 	private BigDecimal netTotal;
 	
-	@Column(name = "PERCENT_VAT", length = 10, nullable = false)
+	@Column(name = "PERCENT_VAT", length = 10)
 	private Integer percentVat;
 	
-	@Column(name = "VAT_TOTAL", precision = 19, scale = 2, nullable = false)
+	@Column(name = "VAT_TOTAL", precision = 19, scale = 2)
 	private BigDecimal vatTotal;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

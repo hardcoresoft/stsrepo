@@ -32,17 +32,17 @@ public class Member extends BaseDomain {
 	@Column(name = "MEMBER_CODE", length = 10, unique = true)
 	private String memberCode;
 
-	@Column(name = "FIRST_NAME", length = 500, nullable = false)
+	@Column(name = "FIRST_NAME", length = 500)
 	private String firstName;
 	
-	@Column(name = "LAST_NAME", length = 500, nullable = false)
+	@Column(name = "LAST_NAME", length = 500)
 	private String lastName;
 	
 	@Column(name = "NICK_NAME", length = 100)
 	private String nickName;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATE_OF_BIRTH", nullable = false)
+	@Column(name = "DATE_OF_BIRTH")
 	private Date dateOfBirth;
 
 	@Column(name = "TELEPHONE_NO", length = 10)
@@ -63,7 +63,7 @@ public class Member extends BaseDomain {
 	@Column(name = "SUB_DISTRICT", length = 500)
 	private String subDistrict;
 	
-	@Column(name = "ACTIVE_STATUS", nullable = false)
+	@Column(name = "ACTIVE_STATUS")
 	private boolean activeStatus;
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -74,7 +74,7 @@ public class Member extends BaseDomain {
 	@Column(name = "EXPIRATION_DATE")
 	private Date expirationDate;
 
-	@Column(name = "CONTACT_CHANNEL", length = 500, nullable = false)
+	@Column(name = "CONTACT_CHANNEL", length = 500)
 	private String contactChannel;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

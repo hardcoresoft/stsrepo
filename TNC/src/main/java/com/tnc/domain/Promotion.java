@@ -40,11 +40,11 @@ public class Promotion extends BaseDomain {
 	private String descriptyion;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "EFFECTIVE_DATE", nullable = false)
+	@Column(name = "EFFECTIVE_DATE")
 	private Date effectiveDate;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "EXPIRATION_DATE", nullable = false)
+	@Column(name = "EXPIRATION_DATE")
 	private Date expirationDate;
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -57,7 +57,7 @@ public class Promotion extends BaseDomain {
 	@Column(name = "IS_PRINT_COUPON")
 	private boolean isPrintCoupon;
 	
-	@Column(name = "ACTIVE_STATUS", nullable = false)
+	@Column(name = "ACTIVE_STATUS")
 	private boolean activeStatus;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

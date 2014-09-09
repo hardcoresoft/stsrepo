@@ -30,16 +30,16 @@ public class Showtime extends BaseDomain {
 	private Integer showtimeId;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "SHOW_DATE", nullable = false)
+	@Column(name = "SHOW_DATE")
 	private Date showDate;
 
-	@Column(name = "LANGUAGE", length = 100, nullable = false)
+	@Column(name = "LANGUAGE", length = 100)
 	private String language;
 	
 	@Column(name = "DESCRIPTION", length = 1000)
 	private String descriptyion;
 	
-	@Column(name = "ACTIVE_STATUS", nullable = false)
+	@Column(name = "ACTIVE_STATUS")
 	private boolean activeStatus;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

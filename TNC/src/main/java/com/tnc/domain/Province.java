@@ -26,7 +26,7 @@ public class Province extends BaseDomain {
 	@Column(name = "PROVINCE_CODE", length = 10, unique = true)
 	private String provinceCode;
 	
-	@Column(name = "ACTIVE_STATUS", nullable = false)
+	@Column(name = "ACTIVE_STATUS")
 	private boolean activeStatus;
 	
 	@Column(name = "PROVINCE_NAME", length = 100, unique = true)

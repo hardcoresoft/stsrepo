@@ -32,16 +32,16 @@ public class PromotionCriteria extends BaseDomain {
 	@Column(name = "DESCRIPTION", length = 1000)
 	private String descriptyion;
 	
-	@Column(name = "CRITERIA_TYPE", length = 500, nullable = false)
+	@Column(name = "CRITERIA_TYPE", length = 500)
 	private String criteriaType;
 	
-	@Column(name = "OPERAND", length = 10, nullable = false)
+	@Column(name = "OPERAND", length = 10)
 	private String operand;
 	
-	@Column(name = "PROMOTION_CONDITION", length = 500, nullable = false)
+	@Column(name = "PROMOTION_CONDITION", length = 500)
 	private String promotionCondition;
 	
-	@Column(name = "ACTIVE_STATUS", nullable = false)
+	@Column(name = "ACTIVE_STATUS")
 	private boolean activeStatus;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
