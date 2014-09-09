@@ -1,6 +1,7 @@
 package com.tnc.domain;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import java.util.Date;
 import java.util.List;
 
@@ -22,7 +23,6 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
-import com.mysql.jdbc.Blob;
 
 @Entity
 @Table(name = "MOVIE")
@@ -94,6 +94,14 @@ public class Movie extends BaseDomain {
 
 	public void setMovieId(Integer movieId) {
 		this.movieId = movieId;
+	}
+
+	public String getMovieCode() {
+		return movieCode;
+	}
+
+	public void setMovieCode(String movieCode) {
+		this.movieCode = movieCode;
 	}
 
 	public String getMovieNameTh() {

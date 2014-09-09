@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -65,8 +66,8 @@ public class SendEmailController {
 			helper.setTo(mailAddress);
 			helper.setSubject(subject);
 			helper.setText(message, true);
-			
-			// sends the e-mail
+//			
+//			// sends the e-mail
 			mailSender.send(email);
         
         } catch (Exception e) {

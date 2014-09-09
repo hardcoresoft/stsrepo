@@ -6,7 +6,9 @@ import com.tnc.domain.Movie;
 
 public interface MovieService {
 
-	public void save(Movie movie);
+	public Movie findByID(Integer movieID);
+	
+	public Movie save(Movie movie);
 	
 	public Movie update(Movie movie);
 
