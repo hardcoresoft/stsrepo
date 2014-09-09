@@ -51,14 +51,14 @@ public class Movie extends BaseDomain {
 	private String movieNameDisplay;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "RELEASED_DATE", nullable = false)
+	@Column(name = "RELEASED_DATE")
 	private Date releasedDate;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "EXPIRATION_DATE", nullable = false)
+	@Column(name = "EXPIRATION_DATE")
 	private Date expirationDate;
 	
-	@Column(name = "DURATION", nullable = false)
+	@Column(name = "DURATION")
 	private Integer duration;
 	
 	@Column(name = "MOVIE_IMAGE")
@@ -74,7 +74,7 @@ public class Movie extends BaseDomain {
 	@Column(name = "ACTOR", length = 500)
 	private String actor;
 	
-	@Column(name = "ACTIVE_STATUS", nullable = false)
+	@Column(name = "ACTIVE_STATUS")
 	private boolean activeStatus;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

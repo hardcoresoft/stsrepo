@@ -32,7 +32,7 @@ public class Theater extends BaseDomain {
 	@Column(name = "DESCRIPTION", length = 1000)
 	private String descriptyion;
 	
-	@Column(name = "ACTIVE_STATUS", nullable = false)
+	@Column(name = "ACTIVE_STATUS")
 	private boolean activeStatus;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

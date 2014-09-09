@@ -29,10 +29,10 @@ public class District extends BaseDomain {
 	@Column(name = "DISTRICT_CODE", length = 10, unique = true)
 	private String districtCode;
 	
-	@Column(name = "ACTIVE_STATUS", nullable = false)
+	@Column(name = "ACTIVE_STATUS")
 	private boolean activeStatus;
 	
-	@Column(name = "DISTRICT_NAME", length = 100, nullable = false)
+	@Column(name = "DISTRICT_NAME", length = 100)
 	private String districtName;
 
 	@ManyToOne(fetch = FetchType.LAZY)

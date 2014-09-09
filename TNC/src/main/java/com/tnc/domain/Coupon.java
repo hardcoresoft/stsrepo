@@ -32,7 +32,7 @@ public class Coupon extends BaseDomain {
 	@Column(name = "COUPON_CODE", length = 10)
 	private String couponCode;
 	
-	@Column(name = "USAGE_STATUS", nullable = false)
+	@Column(name = "USAGE_STATUS")
 	private boolean usageStatus;
 	
 	@Temporal(TemporalType.TIMESTAMP)

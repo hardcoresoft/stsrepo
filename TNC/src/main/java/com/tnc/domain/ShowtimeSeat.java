@@ -27,16 +27,16 @@ public class ShowtimeSeat extends BaseDomain {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer showtimeSeatId;
 	
-	@Column(name = "SHOWTIME_SEAT_ROW", length = 10, nullable = false)
+	@Column(name = "SHOWTIME_SEAT_ROW", length = 10)
 	private String showtimeSeatRow;
 	
-	@Column(name = "SHOWTIME_SEAT_COLRUMN", length = 10, nullable = false)
+	@Column(name = "SHOWTIME_SEAT_COLRUMN", length = 10)
 	private String showtimeSeatColumn;
 	
-	@Column(name = "SHOWTIME_SEAT_PRICE", precision = 19, scale = 2, nullable = false)
+	@Column(name = "SHOWTIME_SEAT_PRICE", precision = 19, scale = 2)
 	private BigDecimal showtimeSeatPrice;
 	
-	@Column(name = "RESERVED_STATUS", nullable = false)
+	@Column(name = "RESERVED_STATUS")
 	private boolean reservedStatus;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
