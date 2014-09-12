@@ -7,9 +7,10 @@
 <head>
 	<title><sitemesh:write property='title' /></title>
 	
-	<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
 	<link href="<c:url value="/resources/js/jquery-ui/1.11.1/jquery-ui.min.css" />" rel="stylesheet">
 	<link href="<c:url value="/resources/js/jquery/dateTimePicker/jquery.datetimepicker.css" />" rel="stylesheet">
+	<link href="<c:url value="/resources/css/boon.css" />" rel="stylesheet">
+	<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
 	
 	<script src="<c:url value="/resources/js/jquery/jquery-1.11.1.min.js" />"></script>
 	<script src="<c:url value="/resources/js/jquery-ui/1.11.1/jquery-ui.min.js" />"></script>
@@ -19,7 +20,23 @@
 </head>
 
 <body>
-	This is the default body in decorator:
-	<sitemesh:write property='body' />
+	<img class="vegas-background" src="<c:url value="/resources/images/bg-main.jpg" />" style="position: fixed; left: 0px; top: -483px; width: 1349px; height: 1243px; bottom: auto; right: auto;z-index: -1">
+	<div id="main" class="home">
+	
+			<!-- Head Begin -->
+			<header>
+				<div class="nav-group-main">
+					<div class="brand">
+						<a class="logo-mini" href="#"></a>
+					</div>
+				</div>
+			</header>
+	
+			<section id="body">
+				<div id="content">
+					<sitemesh:write property='body' />
+				</div>
+			</section>
+	</div>
 </body>
 </html>
