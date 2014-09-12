@@ -29,6 +29,11 @@
 		
 		<!-- File Upload -->
 		<mapping class="com.tnc.domain.Document" />
+		
+		
+		<!-- Spring Security -->
+		<mapping class="com.tnc.domain.User" />
+		<mapping class="com.tnc.domain.Authority" />
 				
 	</session-factory>
 
