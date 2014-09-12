@@ -15,6 +15,7 @@ public class MovieServiceImpl implements MovieService {
 	@Autowired
 	private MovieDao movieDAO;
 	
+	@Transactional
 	public Movie findByID(Integer movieId) {
 
 		return movieDAO.get(movieId);

@@ -1,5 +1,6 @@
 /**
- * 
+ * Create by : Thanarat
+ * Create Date : 09-09-2014
  */
 
 //this parameter use for defind datepicker option of jquery-ui

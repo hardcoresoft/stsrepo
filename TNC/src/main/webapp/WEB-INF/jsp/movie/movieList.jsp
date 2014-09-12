@@ -40,8 +40,8 @@
 						<c:when test="${ not empty movieList }">
 							<c:forEach items="${ movieList }" var="movie">
 								
-								<c:url var="editUrl" value="/movie/edit?id=${ movie.id }" />
-								<c:url var="deleteUrl" value="/movie/delete?id=${ movie.id }" />
+								<c:url var="editUrl" value="/movie/edit?id=${ movie.movieId }" />
+								<c:url var="deleteUrl" value="/movie/delete?id=${ movie.movieId }" />
 								
 								<tr>
 									<td>
@@ -51,7 +51,7 @@
 										<fmt:formatDate value="${ movie.releasedDate }" pattern="dd/MM/yyyy"/>
 									</td>
 									<td>
-										<fmt:formatDate value="${ movie.expirationDate }" pattern="dd/MM/yyyy"/>"
+										<fmt:formatDate value="${ movie.expirationDate }" pattern="dd/MM/yyyy"/>
 									</td>
 									<td>
 										<c:out value="${ movie.duration }" />

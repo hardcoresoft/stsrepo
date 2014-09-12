@@ -68,6 +68,8 @@ public class MovieController {
 //			movie.setMovieImage(blob);
 			
 			movieResponse = movieService.save(movie);
+			
+			System.out.println("Add movie update host : " + movieResponse.getMovieId());
 //			modelAndView.addObject(movieResponse);
 			
 //			redirectAttributes.addFlashAttribute("movie", movieResponse);
@@ -79,7 +81,7 @@ public class MovieController {
 			e.printStackTrace();
 		}
 
-		return "redirect:/movie/view/" + movieResponse.getId();
+		return "redirect:/movie/view?id=" + movieResponse.getMovieId();
 	}
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
@@ -91,20 +93,43 @@ public class MovieController {
 		return modelAndView;
 	}
 	
+//	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+//	public String edit(@ModelAttribute("movie") Movie movie) {
+//		
+//		Movie movieResponse = null;
+//		
+//		try {
+//			System.out.println("Begin Edit movie update host : " + movie.getMovieId());
+//			
+//			movieResponse = movieService.update(movie);
+//			
+//			System.out.println("Edit movie update host : " + movieResponse.getMovieId());
+//			
+////			redirectAttributes. addFlashAttribute("movie", movieResponse);
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//		return "redirect:/movie/view?id=" + movieResponse.getMovieId();
+//	}
+	
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public String edit(@ModelAttribute("movie") Movie movie
-									, final RedirectAttributes redirectAttributes) {
+	public String edit(@ModelAttribute("movie") Movie movie) {
 		
-		try {
-			Movie movieResponse = movieService.update(movie);
+		Movie movieResponse = null;
+
+		try 
+		{
+			movieResponse = movieService.save(movie);
 			
-			redirectAttributes. addFlashAttribute("movie", movieResponse);
-			
-		} catch (Exception e) {
+			System.out.println("edit movie update host : " + movieResponse.getMovieId());
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return "redirect:/movie/view";
+
+		return "redirect:/movie/view?id=" + movieResponse.getMovieId();
 	}
 
 	@RequestMapping(value = "/view", method = RequestMethod.GET)

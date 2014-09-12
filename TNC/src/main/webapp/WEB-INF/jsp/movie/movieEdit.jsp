@@ -22,13 +22,18 @@
 		</script>
 </head>
 <body>
-	<form:form action="/movie/update" method="POST" commandName="movie" enctype="multipart/form-data">
+	<c:url var="actionUrl" value="/movie/edit" />
+<%-- 	<form:form action="${ actionUrl }" method="POST" commandName="movie" enctype="multipart/form-data"> --%>
+	<form:form action="${ actionUrl }" method="post" commandName="movie">
 	
 		<div name="pageHeader">
 			<h3><spring:message code="movie.header.edit" /></h3>
 		</div>
 		
 		<div name="form">
+			
+<%-- 			<form:hidden path="movieId" maxlength="10" size="10" /> --%>
+		
 			<jsp:include page="movieForm.jsp"></jsp:include>
 		</div>
 		
