@@ -1,18 +1,12 @@
 package com.tnc.controller;
 
-import java.sql.Blob;
-
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tnc.domain.Movie;
 import com.tnc.service.MovieService;
@@ -67,7 +61,16 @@ public class MovieController {
 //
 //			movie.setMovieImage(blob);
 			
-			movieResponse = movieService.save(movie);
+			if (movie.getMovieId() == null || movie.getMovieId() == 0) 
+			{
+				
+				movieResponse = movieService.save(movie);
+			}
+			else
+			{
+				
+				movieResponse = movieService.update(movie);
+			}
 			
 			System.out.println("Add movie update host : " + movieResponse.getMovieId());
 //			modelAndView.addObject(movieResponse);

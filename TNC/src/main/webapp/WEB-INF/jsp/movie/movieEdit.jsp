@@ -22,7 +22,7 @@
 		</script>
 </head>
 <body>
-	<c:url var="actionUrl" value="/movie/edit" />
+	<c:url var="actionUrl" value="/movie/add" />
 <%-- 	<form:form action="${ actionUrl }" method="POST" commandName="movie" enctype="multipart/form-data"> --%>
 	<form:form action="${ actionUrl }" method="post" commandName="movie">
 	
