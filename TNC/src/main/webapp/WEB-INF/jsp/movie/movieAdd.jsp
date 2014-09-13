@@ -22,7 +22,7 @@
 	</head>
 	<body>
 		<c:url var="actionUrl" value="/movie/add" />
-		<form:form action="${ actionUrl }" method="post" commandName="movie">
+		<form:form action="${ actionUrl }" method="post" commandName="movie" enctype="multipart/form-data">
 		
 			<div id="pageHeader">
 				<h3><spring:message code="movie.header.add" /></h3>

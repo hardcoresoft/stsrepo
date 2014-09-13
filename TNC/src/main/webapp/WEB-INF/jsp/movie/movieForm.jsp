@@ -1,15 +1,16 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<table style="border: 1px solid black; width: 100%">
+<table>
 	
 	<tr>
 		<td width="20%">
 			<form:label path="movieCode"> <spring:message code="label.code" /> </form:label> <span class="require">*</span>
 		</td>
-		<td width="80%">
+		<td width="60%">
 			<form:input path="movieCode" maxlength="10" size="10" />
 		</td>
+		<td width="20%" align="left"><form:errors cssstyle="color:red" path="movieCode" />
 		
 	</tr>
 	
@@ -20,6 +21,7 @@
 		<td>
 			<form:input path="movieNameTh" maxlength="200" size="50" />
 		</td>
+		<td align="left"><form:errors cssstyle="color:red" path="movieNameTh" />
 		
 	</tr>
 	
@@ -104,14 +106,14 @@
 		</td>
 	</tr>
 	
-<!-- 	<tr> -->
-<!-- 		<td> -->
-<%-- 			<form:label path="movieImage"> <spring:message code="label.image" />  </form:label> --%>
-<!-- 		</td> -->
-<!-- 		<td> -->
-<%-- 			<form:input id="movieImage"  path="movieImage" type="file" /> --%>
-<!-- 		</td> -->
-<!-- 	</tr> -->
+	<tr>
+		<td>
+			<form:label path="movieImage"> <spring:message code="label.image" />  </form:label>
+		</td>
+		<td>
+			<form:input id="movieImage"  path="movieImage" type="file" />
+		</td>
+	</tr>
 	
 
 </table>
