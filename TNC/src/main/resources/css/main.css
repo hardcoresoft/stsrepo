@@ -14,11 +14,10 @@
 	box-shadow: 0 1px 10px #05144a;
 }
 
-#main header {
-	
+#main {
 }
 
-#main header .nav-group {
+#main .nav-group {
 	height: 144px;
 	background-image: url(../images/bg-nav.jpg);
 	background-repeat: repeat-x;
@@ -27,7 +26,7 @@
 	-webkit-border-radius: 25px 25px 0px 0px;
 }
 
-#main header .nav-group-main {
+#main .nav-group-main {
 	height: 80px;
 	background-image: url(../images/bg-nav.jpg);
 	background-repeat: repeat-x;
@@ -36,17 +35,17 @@
 	-webkit-border-radius: 25px 25px 0px 0px;
 }
 
-#main header .nav-group .brand {
+#main .nav-group .brand {
 	float: left;
 	margin-left: 15px;
 }
 
-#main header .nav-group-main .brand {
+#main .nav-group-main .brand {
 	float: left;
 	margin-left: 15px;
 }
 
-#main header .nav-group .brand a.logo {
+#main .nav-group .brand a.logo {
 	display: block;
 	width: 287px;
 	height: 132px;
@@ -56,7 +55,7 @@
 	margin-top: 2px;
 }
 
-#main header .nav-group-main .brand a.logo-mini {
+#main .nav-group-main .brand a.logo-mini {
 	display: block;
 	width: 150px;
 	height: 69px;
@@ -66,19 +65,19 @@
 	margin-top: 2px;
 }
 
-#main header .nav-group nav {
+#main .nav-group {
 	float: right;
 	margin-right: 30px;
 	margin-top: 60px;
 }
 
-#main #body {
-	background-color: #fff;
+#main {
+	background-color: #f0f0f0;
 }
 
-#main #body #content {
-	position: relative;
-	background-color: #fff;
+#main #content {
+	/* position: relative; */
+	background-color: #f0f0f0;
 	left: 0;
 	top: 20px;
 	padding-left: 20px;
@@ -89,8 +88,41 @@
 	-webkit-border-radius: 0px 0px 25px 25px;
 	padding-bottom: 30px;
 }
-
-
-
+#content form{
+	float: left;
+	width: 100%;	
+}
+div #pageHeader{
+	margin-top: 10px;
+}
+div #pageHeader h3{
+	margin: 0px;
+	border-radius: 3px;
+	color: #febf34;
+	padding: 4px 15px;
+	background: url(../images/title.png) repeat-x #2a2a2a;
+}
+div #form{
+	border: 1px solid #2a2a2a;
+	border-radius: 3px;
+	background: url(../images/result.png) repeat-x #ededed;
+}
+div #form table{
+	width: 100%;
+}
+div #form table td{
+	vertical-align: top;
+	padding: 3px;
+}
+div #form table td label{
+	line-height: 25px;
+}
+div #form table td input,textarea{
+	margin: 0px;
+	padding: 3px;
+	font-size: 14px;
+}
+div #btnFooter{
+}
 
 .require{color:red;}

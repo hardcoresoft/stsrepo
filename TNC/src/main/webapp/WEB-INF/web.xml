@@ -40,7 +40,9 @@
 	    </servlet-class>
 	    <init-param>
 	        <param-name>contextConfigLocation</param-name>
-	            <param-value>/WEB-INF/applicationContext.xml</param-value>
+	            <param-value>classpath:applicationContext.xml</param-value>
+<!-- 	            <param-value>/WEB-INF/applicationContext.xml</param-value> -->
+<!-- 	            <param-value>classpath:resources/applicationContext.xml</param-value> -->
 	    </init-param>
 	    <load-on-startup>1</load-on-startup>
 	</servlet>
@@ -200,7 +202,7 @@
 	<!--
 		Viewer Filter used to set the request character encoding to UTF-8.
 	-->
-	<filter>
+	<!-- <filter>
     	<filter-name>ViewerFilter</filter-name>
         <filter-class>org.eclipse.birt.report.filter.ViewerFilter</filter-class>
 	</filter>
@@ -211,17 +213,17 @@
     <filter-mapping>
         <filter-name>ViewerFilter</filter-name>
         <servlet-name>EngineServlet</servlet-name>
-    </filter-mapping>
+    </filter-mapping> -->
     				
 	<!-- Viewer Servlet Context Listener -->
-	<listener>
+	<!-- <listener>
 		<listener-class>org.eclipse.birt.report.listener.ViewerServletContextListener</listener-class>
-	</listener>
+	</listener> -->
 
 	<!-- Viewer HttpSession Listener -->
-	<listener>
+	<!-- <listener>
 		<listener-class>org.eclipse.birt.report.listener.ViewerHttpSessionListener</listener-class>
-	</listener>
+	</listener> -->
 	
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
