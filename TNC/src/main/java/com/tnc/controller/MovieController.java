@@ -104,16 +104,18 @@ public class MovieController
                     return "/movie/movieEdit";
                 }
             }
-
-            if (movie.getMovieId() == null || movie.getMovieId() == 0)
-            {
-
-                movieResponse = movieService.save(movie);
-            }
             else
             {
+                if (movie.getMovieId() == null || movie.getMovieId() == 0)
+                {
 
-                movieResponse = movieService.update(movie);
+                    movieResponse = movieService.save(movie);
+                }
+                else
+                {
+
+                    movieResponse = movieService.update(movie);
+                }
             }
 
             System.out.println("Add movie update host : " + movieResponse.getMovieId());
