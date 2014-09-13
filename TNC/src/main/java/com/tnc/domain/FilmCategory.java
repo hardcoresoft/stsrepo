@@ -91,7 +91,7 @@ public class FilmCategory extends BaseDomain {
 	@Override
 	public Serializable getId() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.filmcatId;
 	}
 
 }
