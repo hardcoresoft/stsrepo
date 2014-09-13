@@ -126,7 +126,7 @@
 		<!-- 		</td> -->
 		<!-- 	</tr> -->
 			
-		
+		</table>
 	</div>
 
 	<div id="btnFooter">
