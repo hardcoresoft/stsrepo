@@ -27,19 +27,16 @@
 	<div id="main" class="home">
 	
 			<!-- Head Begin -->
-			<header>
-				<div class="nav-group-main">
-					<div class="brand">
-						<a class="logo-mini" href="#"></a>
-					</div>
+			<div class="nav-group-main">
+				<div class="brand">
+					<a class="logo-mini" href="#"></a>
 				</div>
-			</header>
+			</div>
 	
-			<section id="body">
-				<div id="content">
-					<sitemesh:write property='body' />
-				</div>
-			</section>
+			<div id="content">
+				<sitemesh:write property='body' />
+				<div style="clear:both"></div>
+			</div>
 	</div>
 </body>
 </html>
