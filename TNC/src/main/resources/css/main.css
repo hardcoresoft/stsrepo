@@ -76,7 +76,7 @@
 }
 
 #main #content {
-	/* position: relative; */
+	position: relative;
 	background-color: #f0f0f0;
 	left: 0;
 	top: 20px;
@@ -93,22 +93,31 @@
 	width: 100%;	
 }
 div #pageHeader{
+	float: left;
 	margin-top: 10px;
+	border: 1px solid #2a2a2a;
+	border-radius: 3px 3px 0px 0px;
+	-webkit-border-radius: 3px 3px 0px 0px;
+	-moz-border-radius: 3px 3px 0px 0px;
+	color: #febf34;
+	background: url(../images/title.png) repeat-x #2a2a2a;
+	width: 100%;
 }
 div #pageHeader h3{
-	margin: 0px;
-	border-radius: 3px;
-	color: #febf34;
-	padding: 4px 15px;
-	background: url(../images/title.png) repeat-x #2a2a2a;
+	padding: 4px 10px;
+	margin: 5px auto 0px;
 }
 div #form{
+	float: left;
+	width: 100%;
 	border: 1px solid #2a2a2a;
-	border-radius: 3px;
+	border-radius: 0px 0px 3px 3px;
+	-webkit-border-radius: 0px 0px 3px 3px;
+	-moz-border-radius: 0px 0px 3px 3px;
 	background: url(../images/result.png) repeat-x #ededed;
 }
 div #form table{
-	width: 100%;
+	padding: 10px;
 }
 div #form table td{
 	vertical-align: top;
@@ -123,6 +132,13 @@ div #form table td input,textarea{
 	font-size: 14px;
 }
 div #btnFooter{
+	float: left;
+	text-align: right;
+	width: 100%;
+	margin: 15px 0px;
+}
+div #btnFooter input,button{
+	padding: 5px;
 }
 
 .require{color:red;}
