@@ -1,8 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@include file="../taglib_includes.jsp" %>
+
 <!DOCTYPE>
 <html>
 <head>
@@ -10,13 +7,13 @@
 <title>Movie View</title>
 </head>
 <body>
-	<div name="pageHeader">
+	<div id="pageHeader">
 		<h3>
 			<spring:message code="movie.header.add" />
 		</h3>
 	</div>
 
-	<div name="form">
+	<div id="form">
 		<table style="border: 1px solid black; width: 100%">
 	
 			<tr>
@@ -132,7 +129,7 @@
 		
 	</div>
 
-	<div name="btnFooter">
+	<div id="btnFooter">
 		<a href="/tnc/movie/list"> <spring:message code="btn.list" /> </a>
 	</div>
 </body>
