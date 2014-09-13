@@ -18,29 +18,6 @@
 
 				$("#expirationDate").datepicker( pickerOpts );
 				
-// 				$("#releasedDate").datetimepicker(
-// 					{
-// 						//yearOffset:543,
-// 						timepicker:false,
-// 						format:'d/m/Y',
-// 						formatDate:'Y/m/d',
-// 						minDate:'-1970/01/01' // yesterday is minimum date
-// 					},
-// 					$.datepicker.regional['th']
-// 				);
-				
-// 				$("#expirationDate").datetimepicker(
-// 					{
-// 						//yearOffset:543,
-// 						timepicker:false,
-// 						format:'d/m/Y',
-// 						formatDate:'Y/m/d',
-// 						minDate:'-1970/01/01' // yesterday is minimum date
-// 					},
-// 					$.datepicker.regional['th']
-// 				);
-				
-			  
 			});
 		</script>
 		
