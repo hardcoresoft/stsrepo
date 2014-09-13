@@ -14,11 +14,17 @@ public class MovieServiceImpl implements MovieService {
 
 	@Autowired
 	private MovieDao movieDAO;
+	
+	@Transactional
+	public Movie findByID(Integer movieId) {
+
+		return movieDAO.get(movieId);
+	}
 
 	@Transactional
-	public void save(Movie movie) {
+	public Movie save(Movie movie) {
 		
-		movieDAO.save(movie);
+		return movieDAO.saveOrUpdate(movie);
 	}
 
 	@Override

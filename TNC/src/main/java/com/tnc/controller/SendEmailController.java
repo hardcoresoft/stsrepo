@@ -1,6 +1,5 @@
 package com.tnc.controller;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -11,8 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -64,18 +62,16 @@ public class SendEmailController {
 //			email.setText(message);
 			
 			MimeMessage email = mailSender.createMimeMessage();
-			MimeMessageHelper helper = new MimeMessageHelper(email, true, "UTF-8");
+			MimeMessageHelper helper = new MimeMessageHelper(email);
 			helper.setTo(mailAddress);
 			helper.setSubject(subject);
 			helper.setText(message, true);
-			Resource res = new FileSystemResource(new File("//Users//thanasitthetprasit//Documents//container.jpg"));
-			helper.addInline("identifier1234", res);
-//			helper.addAttachment("email.properties", new ClassPathResource("email.properties"));
-			
-			// sends the e-mail
+//			
+//			// sends the e-mail
 			mailSender.send(email);
         
         } catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "/mail/Error";
 		}

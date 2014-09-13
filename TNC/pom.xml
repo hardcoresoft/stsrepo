@@ -10,6 +10,7 @@
 
 	<properties>
 		<springframework.version>3.2.9.RELEASE</springframework.version>
+		<spring.security.version>3.2.5.RELEASE</spring.security.version>
 		<hibernate.version>3.6.10.Final</hibernate.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<sitemesh.version>3.0-alpha-2</sitemesh.version>
@@ -65,11 +66,31 @@
 			<artifactId>spring-expression</artifactId>
 			<version>${springframework.version}</version>
 		</dependency>
-	  	<dependency>
-	        <groupId>org.springframework.security</groupId>
-	        <artifactId>spring-security-web</artifactId>
-	        <version>3.2.5.RELEASE</version>
-	    </dependency>
+		
+		<!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+ 
+		<!-- Spring Security JSP Taglib -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
 
 		<!-- Hibernate and database connection -->
 		<dependency>

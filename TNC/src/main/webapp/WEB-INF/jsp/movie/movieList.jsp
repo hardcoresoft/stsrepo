@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE>
 <html>
@@ -13,13 +13,13 @@
 <title>Movie List</title>
 </head>
 <body>
+	<c:url var="addUrl" value="/movie/add" />
 	<table style="border: 1px solid black; width: 100%">
 		<tr>
 			<th colspan="2"><h2>Movie List.</h2></th>
 		</tr>
 		<tr>
-			<a href="/tnc/movie/new">new record</a>
-<%-- 			<form:button value="/movie/add" >new record</form:button> --%>
+			<a href="${ addUrl }">new record</a>
 		</tr>
 		<tr>
 			<td colspan="2">
@@ -37,30 +37,33 @@
 					
 					<!-- Loop for show movie -->
 					<c:choose>
-						<c:when test="${not empty movieList}">
-							<c:forEach items="${movieList}" var="movie">
+						<c:when test="${ not empty movieList }">
+							<c:forEach items="${ movieList }" var="movie">
+								
+								<c:url var="editUrl" value="/movie/edit?id=${ movie.movieId }" />
+								<c:url var="deleteUrl" value="/movie/delete?id=${ movie.movieId }" />
+								
 								<tr>
 									<td>
-										${movie.movieNameDisplay}
+										<c:out value="${ movie.movieNameDisplay }" />
 									</td>
 									<td>
-										${movie.releasedDate}111-222
-<%-- 										<fmt:formatDate value="${movie.releasedDate}" pattern="dd/MM/yyyy"/> --%>
-									</td>
-<!-- 									<td> -->
-<%-- 										<fmt:formatDate value="${movie.expirationDate}" pattern="dd/MM/yyyy"/> --%>
-<!-- 									</td> -->
-									<td>
-										${movie.duration}
+										<fmt:formatDate value="${ movie.releasedDate }" pattern="dd/MM/yyyy"/>
 									</td>
 									<td>
-		 								${movie.movieImage}
+										<fmt:formatDate value="${ movie.expirationDate }" pattern="dd/MM/yyyy"/>
 									</td>
 									<td>
-										<a href="/movie/edit/${movie.id}">edit</a>
+										<c:out value="${ movie.duration }" />
 									</td>
 									<td>
-										<a href="/movie/delete/${movie.id}">delete</a>
+										<c:out value="${ movie.movieImage }" />
+									</td>
+									<td>
+										<a href="${ editUrl }">edit</a>
+									</td>
+									<td>
+										<a href="${ deleteUrl }">delete</a>
 									</td>
 								</tr>
 						</c:forEach>
