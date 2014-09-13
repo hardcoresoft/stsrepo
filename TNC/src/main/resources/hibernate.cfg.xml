@@ -31,8 +31,9 @@
 		<mapping class="com.tnc.domain.Document" />
 		
 		
-		<!-- Spring Security -->
+		<!-- Security -->
 		<mapping class="com.tnc.domain.User" />
+		<mapping class="com.tnc.domain.Role" />
 		<mapping class="com.tnc.domain.Authority" />
 				
 	</session-factory>
