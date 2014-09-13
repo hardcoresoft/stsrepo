@@ -8,7 +8,7 @@
 </head>
 <body>
 	<c:url var="addUrl" value="/movie/add" />
-	<table style="border: 1px solid black; width: 100%">
+	<table style="border-collapse: collapse; border: 1px solid black; width: 100%">
 		<tr>
 			<th colspan="2"><h2>Movie List.</h2></th>
 		</tr>
@@ -34,12 +34,13 @@
 						<c:when test="${ not empty movieList }">
 							<c:forEach items="${ movieList }" var="movie">
 								
-								<c:url var="editUrl" value="/movie/edit?id=${ movie.movieId }" />
-								<c:url var="deleteUrl" value="/movie/delete?id=${ movie.movieId }" />
+								<c:url var="editUrl" value="/movie/edit/${ movie.movieId }" />
+								<c:url var="deleteUrl" value="/movie/delete/${ movie.movieId }" />
+								<c:url var="viewUrl" value="/movie/view/${ movie.movieId }" />
 								
 								<tr>
 									<td>
-										<c:out value="${ movie.movieNameDisplay }" />
+										<a href="${ viewUrl }"> <c:out value="${ movie.movieNameDisplay }" />  </a>
 									</td>
 									<td>
 										<fmt:formatDate value="${ movie.releasedDate }" pattern="dd/MM/yyyy"/>

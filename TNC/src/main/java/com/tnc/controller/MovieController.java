@@ -10,12 +10,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tnc.FormValidator.MovieFormValidator;
 import com.tnc.domain.Movie;
 import com.tnc.service.MovieService;
 
@@ -27,6 +28,9 @@ public class MovieController
     @Autowired
     private MovieService movieService;
 
+    @Autowired
+    private MovieFormValidator validator;
+
     @InitBinder
     public void initBinder(WebDataBinder binder)
     {
@@ -35,7 +39,7 @@ public class MovieController
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 
-    @RequestMapping("/list")
+    @RequestMapping("/")
     public ModelAndView list()
     {
 
@@ -65,7 +69,7 @@ public class MovieController
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(@ModelAttribute("movie") Movie movie, BindingResult result,
+    public String updateHost(@ModelAttribute("movie") Movie movie, BindingResult result,
             SessionStatus status
     // , @RequestParam("file") MultipartFile file
     )
@@ -84,6 +88,22 @@ public class MovieController
             // Blob blob = Hibernate.createBlob(file.getInputStream());
             //
             // movie.setMovieImage(blob);
+
+            /** Validate Form */
+            validator.validate(movie, result);
+            if (result.hasErrors())
+            {
+                if (movie.getMovieId() == null || movie.getMovieId() == 0)
+                {
+
+                    return "/movie/movieAdd";
+                }
+                else
+                {
+
+                    return "/movie/movieEdit";
+                }
+            }
 
             if (movie.getMovieId() == null || movie.getMovieId() == 0)
             {
@@ -109,11 +129,11 @@ public class MovieController
             e.printStackTrace();
         }
 
-        return "redirect:/movie/view?id=" + movieResponse.getMovieId();
+        return "redirect:/movie/view/" + movieResponse.getMovieId();
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public ModelAndView getEdit(@RequestParam(value = "id", required = true) Integer movieId)
+    @RequestMapping(value = "/edit/{movieId}", method = RequestMethod.GET)
+    public ModelAndView getEdit(@PathVariable(value = "movieId") Integer movieId)
     {
 
         ModelAndView modelAndView = new ModelAndView("/movie/movieEdit");
@@ -122,52 +142,8 @@ public class MovieController
         return modelAndView;
     }
 
-    // @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    // public String edit(@ModelAttribute("movie") Movie movie) {
-    //
-    // Movie movieResponse = null;
-    //
-    // try {
-    // System.out.println("Begin Edit movie update host : " +
-    // movie.getMovieId());
-    //
-    // movieResponse = movieService.update(movie);
-    //
-    // System.out.println("Edit movie update host : " +
-    // movieResponse.getMovieId());
-    //
-    // // redirectAttributes. addFlashAttribute("movie", movieResponse);
-    //
-    // } catch (Exception e) {
-    // e.printStackTrace();
-    // }
-    //
-    // return "redirect:/movie/view?id=" + movieResponse.getMovieId();
-    // }
-
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String edit(@ModelAttribute("movie") Movie movie, BindingResult result,
-            SessionStatus status)
-    {
-
-        Movie movieResponse = null;
-
-        try
-        {
-            movieResponse = movieService.save(movie);
-
-            System.out.println("edit movie update host : " + movieResponse.getMovieId());
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
-        return "redirect:/movie/view?id=" + movieResponse.getMovieId();
-    }
-
-    @RequestMapping(value = "/view", method = RequestMethod.GET)
-    public ModelAndView view(@RequestParam(value = "id", required = true) Integer movieId)
+    @RequestMapping(value = "/view/{movieId}", method = RequestMethod.GET)
+    public ModelAndView view(@PathVariable(value = "movieId") Integer movieId)
     {
 
         ModelAndView modelAndView = new ModelAndView("/movie/movieView");
@@ -176,12 +152,12 @@ public class MovieController
         return modelAndView;
     }
 
-    @RequestMapping("/delete")
-    public String delete(@RequestParam(value = "id", required = true) Integer movieId)
+    @RequestMapping("/delete/{movieId}")
+    public String delete(@PathVariable(value = "movieId") Integer movieId)
     {
 
         movieService.delete(movieId);
 
-        return "redirect:/movie/list";
+        return "redirect:/movie/";
     }
 }

@@ -130,7 +130,7 @@
 	</div>
 
 	<div id="btnFooter">
-		<a href="/tnc/movie/list"> <spring:message code="btn.list" /> </a>
+		<a href="/tnc/movie/"> <spring:message code="btn.list" /> </a>
 	</div>
 </body>
 </html>
