@@ -10,39 +10,41 @@ import com.tnc.dao.MovieDao;
 import com.tnc.domain.Movie;
 
 @Service
-public class MovieServiceImpl implements MovieService {
+@Transactional
+public class MovieServiceImpl implements MovieService
+{
 
-	@Autowired
-	private MovieDao movieDAO;
-	
-	@Transactional
-	public Movie findByID(Integer movieId) {
+    @Autowired
+    private MovieDao movieDAO;
 
-		return movieDAO.get(movieId);
-	}
+    public Movie findByID(Integer movieId)
+    {
 
-	@Transactional
-	public Movie save(Movie movie) {
-		
-		return movieDAO.saveOrUpdate(movie);
-	}
+        return movieDAO.get(movieId);
+    }
 
-	@Override
-	public Movie update(Movie movie) {
-		
-		return movieDAO.saveOrUpdate(movie);
-	}
-	
-	@Transactional
-	public List<Movie> list() {
+    public Movie save(Movie movie)
+    {
 
-		return movieDAO.getAll();
-	}
+        return movieDAO.saveOrUpdate(movie);
+    }
 
-	@Transactional
-	public void delete(Integer id) {
-		
-		movieDAO.delete(id);
-	}
+    public Movie update(Movie movie)
+    {
+
+        return movieDAO.saveOrUpdate(movie);
+    }
+
+    public List<Movie> list()
+    {
+
+        return movieDAO.getAll();
+    }
+
+    public void delete(Integer id)
+    {
+
+        movieDAO.delete(id);
+    }
 
 }
