@@ -27,7 +27,7 @@ public class TheaterLayout extends BaseDomain {
 	private String layoutName;
 
 	@Column(name = "DESCRIPTION", length = 1000)
-	private String descriptyion;
+	private String description;
 	
 	@Column(name = "SEAT_AMOUNT", length = 10)
 	private Integer seatAmount;
@@ -51,12 +51,12 @@ public class TheaterLayout extends BaseDomain {
 		this.layoutName = layoutName;
 	}
 
-	public String getDescriptyion() {
-		return descriptyion;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescriptyion(String descriptyion) {
-		this.descriptyion = descriptyion;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Integer getSeatAmount() {

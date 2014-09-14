@@ -46,3 +46,15 @@ var pickerOpts = {
 			            $(this).val(arrayDate[0]+"/"+arrayDate[1]+"/"+arrayDate[2]);  
 			        }
 				};
+
+
+// Data Table
+
+var processing = true;
+
+$( document ).ready(function(){
+	var dataTb = $('table.data-grid').DataTable({
+        "processing": processing,
+	});
+	var btnNewRecord = $('.btn-new-record').button();
+});
