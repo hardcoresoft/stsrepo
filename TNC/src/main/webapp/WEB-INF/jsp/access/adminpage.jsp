@@ -4,17 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>:: Welcome ::</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<h1>Welcome Page</h1>
-	<p>Everyone has access to this page.</p>
+	<h1>Admin Page</h1>
+	<p>Admin has access to this page.</p>
 	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
 		ac velit et ante laoreet eleifend. Donec vitae augue nec sem
 		condimentum varius.</p>
-
-	<p>เลือกสื่อที่จะส่ง, consectetur รายสัปดาห์ซูมออฟติคัล
-		ตรวจคนเข้าเมือง ac กริดและเทรสิปั๊ม eleifend
-		คุ้มครองประวัติผู้ถือมิได้ SEM condimentum varius</p>
 </body>
 </html>

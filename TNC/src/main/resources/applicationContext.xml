@@ -128,9 +128,12 @@
 
 
 	<!-- Spring Security -->
-	<bean id="userDetailsService"
+	<!-- <bean id="userDetailsService"
 		class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
 		<property name="dataSource" ref="dataSource" />
+	</bean> -->
+
+	<bean id="customUserDetailsService" class="com.tnc.service.CustomUserDetailsService">
 	</bean>
 
 	<bean name="bcryptEncoder"
@@ -139,8 +142,13 @@
 
 	<bean id="daoAuthenticationProvider"
 		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
-		<property name="userDetailsService" ref="userDetailsService" />
+		<property name="userDetailsService" ref="customUserDetailsService" />
 		<property name="passwordEncoder" ref="bcryptEncoder" />
+	</bean>
+
+	<bean id="authenticationFilter"
+		class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+		<property name="authenticationManager" ref="authenticationManager" />
 	</bean>
 
 </beans>

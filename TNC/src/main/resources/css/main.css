@@ -92,6 +92,9 @@
 	float: left;
 	width: 100%;	
 }
+#content table{
+	width: 100%;
+}
 div #pageHeader{
 	float: left;
 	margin-top: 10px;
@@ -131,6 +134,16 @@ div #form table td input,textarea{
 	padding: 3px;
 	font-size: 14px;
 }
+
+/* Data Grid */
+div #form table.data-grid{
+	padding: 0px;
+}
+div #form table.data-grid td{
+	padding: 8px 10px;
+}
+
+
 div #btnFooter{
 	float: left;
 	text-align: right;
