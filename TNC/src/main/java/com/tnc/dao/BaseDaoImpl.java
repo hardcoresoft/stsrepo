@@ -50,7 +50,7 @@ public abstract class BaseDaoImpl<T, PK extends Serializable> implements BaseDao
 	public T get(PK id) {
 		T entity = (T) this.sessionFactory.getCurrentSession().get(this.persistentClass, id);
 		if (entity == null) {
-			throw new EntityNotFoundException(this.persistentClass + " not found.");
+			throw new EntityNotFoundException(this.persistentClass + " with id '"+ id + "' not found.");
 		}
 		return entity;
 	}
