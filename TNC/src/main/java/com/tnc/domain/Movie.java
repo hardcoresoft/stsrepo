@@ -61,8 +61,8 @@ public class Movie extends BaseDomain {
 	@Column(name = "DURATION")
 	private Integer duration;
 	
-	@Column(name = "MOVIE_IMAGE")
-	@Lob
+	@Column(name="MOVIE_IMAGE")
+    @Lob
 	private Blob movieImage;
 	
 	@Column(name = "SYNOPSIS", length = 2000)

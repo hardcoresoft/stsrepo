@@ -1,10 +1,12 @@
 package com.tnc.controller;
 
+import java.sql.Blob;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -13,11 +15,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.tnc.FormValidator.MovieFormValidator;
 import com.tnc.domain.Movie;
+import com.tnc.formValidator.MovieFormValidator;
 import com.tnc.service.MovieService;
 
 @Controller
@@ -32,11 +35,16 @@ public class MovieController
     private MovieFormValidator validator;
 
     @InitBinder
-    public void initBinder(WebDataBinder binder)
+    public void initBinder(WebDataBinder dataBinder)
     {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+//        dataBinder.setDisallowedFields(new String[] { "releasedDate", "expirationDate", "movieImage" });
+
+        dataBinder.registerCustomEditor(String.class, new StringTrimmerEditor(false));
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         dateFormat.setLenient(false);
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+        dataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 
     @RequestMapping("/")
@@ -69,25 +77,24 @@ public class MovieController
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String updateHost(@ModelAttribute("movie") Movie movie, BindingResult result,
-            SessionStatus status
-    // , @RequestParam("file") MultipartFile file
-    )
+    public String updateHost(@ModelAttribute("movie") Movie movie, BindingResult result, @RequestParam("movieImage") MultipartFile file)
     {
 
         Movie movieResponse = null;
-        // ModelAndView modelAndView = new ModelAndView("/movie/movieView");
 
         try
         {
-            // System.out.println("Name:" + file.getName());
-            // System.out.println("size (MB) :" + file.getSize());
-            // System.out.println("File:" + file.getName());
-            // System.out.println("ContentType:" + file.getContentType());
-            //
-            // Blob blob = Hibernate.createBlob(file.getInputStream());
-            //
-            // movie.setMovieImage(blob);
+
+            System.out.println("Name:" + file.getOriginalFilename());
+            System.out.println("size (MB) :" + file.getSize());
+            System.out.println("File:" + file.getName());
+            System.out.println("ContentType:" + file.getContentType());
+            
+//            System.out.println(movie.getMovieImage().);
+
+            Blob blob = new javax.sql.rowset.serial.SerialBlob(file.getBytes());
+
+            movie.setMovieImage(blob);
 
             /** Validate Form */
             validator.validate(movie, result);
@@ -119,13 +126,7 @@ public class MovieController
             }
 
             System.out.println("Add movie update host : " + movieResponse.getMovieId());
-            // modelAndView.addObject(movieResponse);
-
-            // redirectAttributes.addFlashAttribute("movie", movieResponse);
         }
-        // catch (IOException e) {
-        // e.printStackTrace();
-        // }
         catch (Exception e)
         {
             e.printStackTrace();

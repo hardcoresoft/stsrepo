@@ -1,4 +1,4 @@
-package com.tnc.FormValidator;
+package com.tnc.formValidator;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -20,8 +20,11 @@ public class MovieFormValidator implements Validator
     @Override
     public void validate(Object model, Errors errors)
     {
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "movieCode","required.movieCode", "code is required.");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "movieNameTh","required.movieNameTh", "thai name is required.");
+        Movie movie = (Movie) model;
+        
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "movieCode","required.field");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "movieNameTh","required.field");
+        
     }
 
 }

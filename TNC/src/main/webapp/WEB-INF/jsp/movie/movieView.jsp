@@ -68,7 +68,7 @@
 					<spring:message code="movie.expiration.date" />
 				</td>
 				<td>
-					<fmt:formatDate value="${ movie.expirationDate }" pattern="dd-MM-yyyy"/>
+					<fmt:formatDate value="${ movie.expirationDate }" pattern="dd/MM/yyyy"/>
 				</td>
 			</tr>
 			

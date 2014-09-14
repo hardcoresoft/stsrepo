@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface BaseDao<T, PK extends Serializable> {
-
+    
 	public T get(PK id);
 
 	public List<T> getAll();
