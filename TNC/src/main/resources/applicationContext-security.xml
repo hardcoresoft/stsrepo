@@ -10,6 +10,8 @@ http://www.springframework.org/schema/util
 http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 
 	<http pattern="/resources" security="none" />
+	
+	<beans:import resource="applicationContext.xml"/>
 
 	<http auto-config="true" use-expressions="true">
 		<!-- Management Module -->
@@ -35,7 +37,7 @@ http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 
 	<authentication-manager alias="authenticationManager">
 		<authentication-provider user-service-ref="customUserDetailsService">
-			<password-encoder hash="md5" />
+			<password-encoder hash="bcrypt" />
 		</authentication-provider>
 	</authentication-manager>
 

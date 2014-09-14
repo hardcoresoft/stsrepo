@@ -8,19 +8,21 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.security.core.SpringSecurityCoreVersion;
+
 @MappedSuperclass
 public abstract class BaseDomain implements Serializable {
 
-	private static final long serialVersionUID = -6883870368480986753L;
+	private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
 
-	@Column(name = "CREATED_BY", length = 30)
+	@Column(name = "CREATED_BY", length = 50)
 	protected String createdBy;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "CREATED_DATE")
 	protected Date createdDate;
 
-	@Column(name = "UPDATED_BY", length = 30)
+	@Column(name = "UPDATED_BY", length = 50)
 	protected String updatedBy;
 
 	@Temporal(TemporalType.TIMESTAMP)
