@@ -7,6 +7,8 @@
 <title>Movie View</title>
 </head>
 <body>
+	<c:url var="picUrl" value="/document/${ movie.id }"></c:url>
+
 	<div id="pageHeader">
 		<h3>
 			<spring:message code="movie.header.add" />
@@ -117,14 +119,14 @@
 				</td>
 			</tr>
 			
-		<!-- 	<tr> -->
-		<!-- 		<td> -->
-		<%-- 			<form:label path="movieImage"> <spring:message code="label.image" />  </form:label> --%>
-		<!-- 		</td> -->
-		<!-- 		<td> -->
-		<%-- 			<form:input id="movieImage"  path="movieImage" type="file" /> --%>
-		<!-- 		</td> -->
-		<!-- 	</tr> -->
+			<tr>
+				<td>
+					<spring:message code="label.image" />
+				</td>
+				<td>
+					<img alt="${ movie.movieNameDisplay }" src="${ picUrl }" width="300">
+				</td>
+			</tr>
 			
 		</table>
 	</div>
