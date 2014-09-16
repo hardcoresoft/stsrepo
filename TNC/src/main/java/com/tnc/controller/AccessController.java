@@ -9,6 +9,39 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping
 public class AccessController {
 
+//	private String username;
+//	private String password;
+//
+//	@Autowired
+//	private AuthenticationManager authenticationManager;
+//
+//	@RequestMapping(value = "/login", method = { RequestMethod.POST })
+//	public @ResponseBody String authentication(@RequestParam("login") String userName,
+//			@RequestParam("password") String password, HttpServletRequest request) {
+//
+//		this.username = userName;
+//		this.password = password;
+//
+//		Authentication authenticationToken = new UsernamePasswordAuthenticationToken(userName, password);
+//		try {
+//
+//			Authentication authentication = authenticationManager.authenticate(authenticationToken);
+//
+//			SecurityContext securityContext = SecurityContextHolder.getContext();
+//
+//			securityContext.setAuthentication(authentication);
+//
+//			HttpSession session = request.getSession(true);
+//			session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+//
+//			return "sucess";
+//		} catch (AuthenticationException ex) {
+//			return "fail " + ex.getMessage();
+//		} finally {
+//
+//		}
+//	}
+
 	@RequestMapping("/login")
 	public String login(Model model, @RequestParam(required = false) String message) {
 		model.addAttribute("message", message);

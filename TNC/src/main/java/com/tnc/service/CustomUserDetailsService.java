@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.tnc.dao.AuthorityDao;
 import com.tnc.dao.UserDao;
 import com.tnc.domain.Role;
 
@@ -29,10 +28,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private UserDao userDao;
-
-	@Autowired
-	private AuthorityDao authorityDao;
-
+	
 	/**
 	 * Returns a populated {@link UserDetails} object. The username is first
 	 * retrieved from the database and then mapped to a {@link UserDetails}
@@ -40,19 +36,21 @@ public class CustomUserDetailsService implements UserDetailsService {
 	 */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		com.tnc.domain.User user = userDao.get(username.toLowerCase());
+
+		if (user == null) {
+			throw new UsernameNotFoundException(username);
+		}
+		
 		try {
-			com.tnc.domain.User domainUser = userDao.get(username);
-			boolean enabled = true;
-			boolean accountNonExpired = true;
-			boolean credentialsNonExpired = true;
-			boolean accountNonLocked = true;
-			return new User(domainUser.getUsername().toLowerCase(), domainUser.getPassword(), enabled,
-					accountNonExpired, credentialsNonExpired, accountNonLocked,
-					getAuthorities(domainUser));
+			return new User(user.getUsername(), user.getPassword(), user.isEnabled(), user.isAccountNonExpired(),
+					user.isCredentialsNonExpired(), user.isAccountNonLocked(), user.getAuthorities());
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+		
 	}
+	
 
 	/**
 	 * Retrieves a collection of {@link GrantedAuthority} based on a numerical

@@ -1,14 +1,22 @@
 package com.tnc.domain;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.SpringSecurityCoreVersion;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+import com.tnc.enums.RoleDefined;
 
 @MappedSuperclass
 public abstract class BaseDomain implements Serializable {
@@ -63,4 +71,33 @@ public abstract class BaseDomain implements Serializable {
 		this.updatedDate = updatedDate;
 	}
 
+	@PrePersist
+	public void prePersist() {
+		try {
+			Calendar now = Calendar.getInstance(Locale.US);
+			this.createdDate = now.getTime();
+
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			this.createdBy = (authentication != null & authentication.isAuthenticated()) ? authentication.getName()
+					: RoleDefined.Anonymous.name();
+
+		} catch (Exception e) {
+			//logger.debug("Cannot invoke @PrePersist: " + e.getMessage());
+		}
+	}
+
+	@PreUpdate
+	public void preUpdate() {
+		try {
+			Calendar now = Calendar.getInstance(Locale.US);
+			this.updatedDate = now.getTime();
+
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			this.updatedBy = (authentication != null & authentication.isAuthenticated()) ? authentication.getName()
+					: RoleDefined.Anonymous.name();
+
+		} catch (Exception e) {
+			//.debug("Cannot invoke @PreUpdate: " + e.getMessage());
+		}
+	}
 }

@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -18,7 +16,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public abstract class BaseDaoImpl<T, PK extends Serializable> implements BaseDao<T, PK> {
 
-	protected Log log = LogFactory.getLog(getClass());
+//	protected Log log = LogFactory.getLog(getClass());
 	protected Class<T> persistentClass;
 
 	@Autowired

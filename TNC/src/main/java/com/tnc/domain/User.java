@@ -30,6 +30,91 @@ import org.springframework.util.Assert;
 @Table(name = "USER")
 public class User extends BaseDomain implements UserDetails, CredentialsContainer {
 
+	private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
+
+	@Id
+	@Column(name = "USERNAME", length = 50, nullable = false)
+	private String username;
+
+	@Column(name = "PASSWORD", length = 500, nullable = false)
+	private String password;
+
+	@Column(name = "ENABLED")
+	private boolean enabled;
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
+	@ForeignKey(name = "FK_USER_USER_NAME")
+	private List<Role> roles = new ArrayList<Role>();
+
+	@Column(name = "ACCOUNT_NON_EXPIRED")
+	private final boolean accountNonExpired;
+
+	@Column(name = "ACCOUNT_NON_LOCKED")
+	private final boolean accountNonLocked;
+
+	@Column(name = "CREDENTIALS_NON_EXPIRED")
+	private final boolean credentialsNonExpired;
+
+	@Transient
+	private final Set<GrantedAuthority> authorities;
+
+	@Override
+	public Serializable getId() {
+		return this.username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public boolean isAccountNonExpired() {
+		return accountNonExpired;
+	}
+
+	public boolean isAccountNonLocked() {
+		return accountNonLocked;
+	}
+
+	public boolean isCredentialsNonExpired() {
+		return credentialsNonExpired;
+	}
+
+	public void eraseCredentials() {
+		password = null;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
+	public Collection<GrantedAuthority> getAuthorities() {
+		return authorities;
+	}
+
 	// ~ Constructors
 	// ===================================================================================================
 
@@ -98,87 +183,6 @@ public class User extends BaseDomain implements UserDetails, CredentialsContaine
 
 	// ~ Methods
 	// ========================================================================================================
-
-	private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
-
-	@Id
-	@Column(name = "USERNAME", length = 50, nullable = false)
-	private String username;
-
-	@Column(name = "PASSWORD", length = 500, nullable = false)
-	private String password;
-
-	@Column(name = "ENABLED")
-	private boolean enabled;
-
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
-	@ForeignKey(name = "FK_USER_USER_NAME")
-	private List<Role> roles = new ArrayList<Role>();
-
-	@Column(name = "ACCOUNT_NON_EXPIRED")
-	private final boolean accountNonExpired;
-
-	@Column(name = "ACCOUNT_NON_LOCKED")
-	private final boolean accountNonLocked;
-
-	@Column(name = "CREDENTIALS_NON_EXPIRED")
-	private final boolean credentialsNonExpired;
-
-	@Transient
-	private final Set<GrantedAuthority> authorities;
-
-	@Override
-	public Serializable getId() {
-		return this.username;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-
-	public boolean isAccountNonExpired() {
-		return accountNonExpired;
-	}
-
-	public boolean isAccountNonLocked() {
-		return accountNonLocked;
-	}
-
-	public boolean isCredentialsNonExpired() {
-		return credentialsNonExpired;
-	}
-
-	public void eraseCredentials() {
-		password = null;
-	}
-
-	public List<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
-
-	public Collection<GrantedAuthority> getAuthorities() {
-		return authorities;
-	}
 
 	private static SortedSet<GrantedAuthority> sortAuthorities(Collection<? extends GrantedAuthority> authorities) {
 		Assert.notNull(authorities, "Cannot pass a null GrantedAuthority collection");
