@@ -142,7 +142,7 @@ public class UserServiceImpl implements UserService {
 		}
 		try {
 			return new User(user.getUsername(), user.getPassword(), user.isEnabled(), user.isAccountNonExpired(),
-					user.isCredentialsNonExpired(), user.isAccountNonLocked(), user.getAuthorities());
+					user.isCredentialsNonExpired(), user.isAccountNonLocked(), getAuthorities(user));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -194,15 +194,6 @@ public class UserServiceImpl implements UserService {
 		return authorities;
 	}
 
-	// private UserRepository repository;
-
-	// @Autowired
-	// public RepositoryUserService(PasswordEncoder passwordEncoder,
-	// UserRepository repository) {
-	// this.passwordEncoder = passwordEncoder;
-	// this.repository = repository;
-	// }
-	//
 	@Transactional
 	@Override
 	public User registerNewUserAccount(User user) throws Exception {
@@ -235,4 +226,6 @@ public class UserServiceImpl implements UserService {
 		}
 		return encodedPassword;
 	}
+	
+	
 }

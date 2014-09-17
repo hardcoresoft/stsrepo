@@ -8,7 +8,7 @@
 </head>
 
 <body>
-	<form class="login-form-xxx" action="j_spring_security_check" method="post">
+	<form:form class="login-form" action="j_spring_security_check" method="post">
 		<fieldset>
 			<legend>Login</legend>
 			<p>
@@ -23,7 +23,7 @@
 				<input type="submit" value="Login" />
 			</p>
 		</fieldset>
-	</form>
+	</form:form>
 	<p class="message">${message}</p>
 </body>
 </html>

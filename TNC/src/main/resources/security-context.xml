@@ -13,18 +13,18 @@
 	<security:global-method-security secured-annotations="enabled" />
 
 	<security:http auto-config="true" use-expressions="true">
-        <!-- Admin Module -->
+        <!-- Access Module -->
         <security:intercept-url pattern="/" access="permitAll" />
-        <security:intercept-url pattern="/login*" access="permitAll" />
-        <security:intercept-url pattern="/logout*" access="permitAll" />
-        <security:intercept-url pattern="/denied" access="hasRole('ROLE_USER')" />
-        <security:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
-        <security:intercept-url pattern="/common" access="permitAll" />
+        <security:intercept-url pattern="/login" access="permitAll" />
+        <security:intercept-url pattern="/logout" access="permitAll" />
+        <security:intercept-url pattern="/denied" access="permitAll" />
+        <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+        <security:intercept-url pattern="/common/**" access="hasRole('ROLE_USER')" />
         
         <!-- Management Module -->
         <security:intercept-url pattern="/movie" access="permitAll" />
         <security:intercept-url pattern="/fileUpload*" access="permitAll" />
-        <security:intercept-url pattern="/contact" access="hasRole('ROLE_USER')" />
+        <security:intercept-url pattern="/contact/**" access="hasRole('ROLE_USER')" />
         
 <!--         <security:intercept-url pattern="/css/main.css" access="IS_AUTHENTICATED_ANONYMOUSLY" /> -->
 <!--         <security:intercept-url pattern="/resources/**" access="IS_AUTHENTICATED_ANONYMOUSLY" /> -->
@@ -34,7 +34,7 @@
         <!-- Override default login and logout pages -->
         <security:form-login login-page="/login" default-target-url="/" authentication-failure-url="/login/failure" />
                              
-        <security:access-denied-handler error-page="/denided" />
+        <security:access-denied-handler error-page="/denied" />
                              
         <security:logout logout-url="/logout" invalidate-session="true" logout-success-url="/logout/success" />
     </security:http>

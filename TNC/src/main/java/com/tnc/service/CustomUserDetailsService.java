@@ -44,7 +44,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		
 		try {
 			return new User(user.getUsername(), user.getPassword(), user.isEnabled(), user.isAccountNonExpired(),
-					user.isCredentialsNonExpired(), user.isAccountNonLocked(), user.getAuthorities());
+					user.isCredentialsNonExpired(), user.isAccountNonLocked(), this.getAuthorities(user));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
