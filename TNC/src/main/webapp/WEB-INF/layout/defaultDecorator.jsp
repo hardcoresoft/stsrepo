@@ -37,6 +37,19 @@
 				<div class="brand">
 					<a class="logo-mini" href="#"></a>
 				</div>
+				<div align="right" style="color:white; padding-right: 12px; padding-top: 8px" >
+				
+					<c:if test="${SPRING_SECURITY_CONTEXT ne null}">
+						You are logged in as: <sec:authentication property="principal.username"/><br/>
+						ยินดีต้อนรับ คุณ <sec:authentication property="principal.roles"/><br/>
+						Authorities: <sec:authentication property="principal.authorities"/><br/>
+						<c:url var="logoutUrl" value="/logout" />
+					(<a href="${logoutUrl}">Logout</a>)
+					</c:if>
+					
+<%-- 					${SPRING_SECURITY_CONTEXT }
+ --%>					
+				</div>
 			</div>
 	
 			<div id="content">
