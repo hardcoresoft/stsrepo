@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/")
@@ -23,38 +24,41 @@ public class AccessController {
 
 	protected String username;
 	protected String password;
-
-	@Autowired
-	private AuthenticationManager authenticationManager;
-
-	@RequestMapping(value = "/authen", method = { RequestMethod.POST, RequestMethod.GET })
-	public @ResponseBody String authentication(@RequestParam("j_username") String userName,
-			@RequestParam("j_password") String password, HttpServletRequest request) {
-
-		this.username = userName;
-		this.password = password;
-
-		Authentication authenticationToken = new UsernamePasswordAuthenticationToken(userName, password);
-		try {
-
-			Authentication authentication = authenticationManager.authenticate(authenticationToken);
-
-			SecurityContext securityContext = SecurityContextHolder.getContext();
-
-			securityContext.setAuthentication(authentication);
-
-			HttpSession session = request.getSession();
-			session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
-
-			return "sucess";
-		} catch (AuthenticationException ex) {
-			return "fail " + ex.getMessage();
-		}
-	}
+//
+//	@Autowired
+//	private AuthenticationManager authenticationManager;
+//
+//	@RequestMapping(value = "/login", method = { RequestMethod.POST, RequestMethod.GET })
+//	public @ResponseBody String authentication(@RequestParam("j_username") String userName,
+//			@RequestParam("j_password") String password, HttpServletRequest request) {
+//
+//		this.username = userName;
+//		this.password = password;
+//
+//		Authentication authenticationToken = new UsernamePasswordAuthenticationToken(userName, password);
+//		try {
+//
+//			Authentication authentication = authenticationManager.authenticate(authenticationToken);
+//
+//			SecurityContext securityContext = SecurityContextHolder.getContext();
+//
+//			securityContext.setAuthentication(authentication);
+//
+//			HttpSession session = request.getSession();
+//			session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+//
+//			return "redirect:/success";
+//		} catch (AuthenticationException ex) {
+//			return "redirect:/login";
+//		}
+//	}
 
 	@RequestMapping("/login")
 	public String login(Model model, @RequestParam(required = false) String message) {
 		model.addAttribute("message", message);
+		
+//		ModelAndView modelAndView = new ModelAndView("/login");
+		
 		return "access/login";
 	}
 
@@ -64,14 +68,16 @@ public class AccessController {
 	}
 
 	@RequestMapping(value = "/login/failure")
-	public String loginFailure() {
+	public String loginFailure(Model model) {
 		String message = "Invalid Username or Password!";
-		return "redirect:/login?message=" + message;
+		model.addAttribute("message", message);
+		return "redirect:/login";
 	}
 
 	@RequestMapping(value = "/logout/success")
 	public String logoutSuccess() {
-		String message = "Logout Success!";
-		return "redirect:/login?message=" + message;
+		//String message = "Logout Success!";
+//		return "redirect:/login?message=" + message;
+		return "redirect:/login";
 	}
 }

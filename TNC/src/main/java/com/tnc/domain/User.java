@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,8 +16,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.ForeignKey;
@@ -40,23 +45,62 @@ public class User extends BaseDomain implements UserDetails, CredentialsContaine
 	private String password;
 
 	@Column(name = "ENABLED")
-	private boolean enabled;
+	private boolean enabled = true;
+
+	@Column(name = "ACCOUNT_NON_EXPIRED")
+	private boolean accountNonExpired = true;
+
+	@Column(name = "ACCOUNT_NON_LOCKED")
+	private boolean accountNonLocked = true;
+
+	@Column(name = "CREDENTIALS_NON_EXPIRED")
+	private boolean credentialsNonExpired = true;
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
 	@ForeignKey(name = "FK_USER_USER_NAME")
 	private List<Role> roles = new ArrayList<Role>();
 
-	@Column(name = "ACCOUNT_NON_EXPIRED")
-	private final boolean accountNonExpired;
-
-	@Column(name = "ACCOUNT_NON_LOCKED")
-	private final boolean accountNonLocked;
-
-	@Column(name = "CREDENTIALS_NON_EXPIRED")
-	private final boolean credentialsNonExpired;
-
+	@Column(name = "SESSION_ID", length = 500)
+	private String sessionId;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "LAST_LOGIN")
+	private Date lastLogin;
+	
 	@Transient
-	private final Set<GrantedAuthority> authorities;
+	private Set<GrantedAuthority> authorities;
+
+	/*
+	 * For custom attributes using in projects
+	 */
+	@Column(name = "FIRST_NAME", length = 100)
+	private String firstName;
+
+	@Column(name = "LAST_NAME", length = 100)
+	private String lastName;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "BIRTH_DATE")
+	private Date birthDate;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "HIRE_DATE")
+	private Date hireDate;
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = true) 
+	@JoinColumn(name = "HIRE_BRANCH")
+	@ForeignKey(name = "FK_USER_HIRE_BRANCH")
+	private Branch hireBranch;
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "WORKING_BRANCH")
+	@ForeignKey(name = "FK_USER_WORKING_BRANCH")
+	private Branch workingBranch;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "MANAGER")
+	@ForeignKey(name = "FK_USER_MANAGER")
+	private User manager;
 
 	@Override
 	public Serializable getId() {
@@ -66,7 +110,7 @@ public class User extends BaseDomain implements UserDetails, CredentialsContaine
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
+
 	public String getUsername() {
 		return username;
 	}
@@ -91,12 +135,24 @@ public class User extends BaseDomain implements UserDetails, CredentialsContaine
 		return accountNonExpired;
 	}
 
+	public void setAccountNonExpired(boolean accountNonExpired) {
+		this.accountNonExpired = accountNonExpired;
+	}
+
 	public boolean isAccountNonLocked() {
 		return accountNonLocked;
 	}
 
+	public void setAccountNonLocked(boolean accountNonLocked) {
+		this.accountNonLocked = accountNonLocked;
+	}
+
 	public boolean isCredentialsNonExpired() {
 		return credentialsNonExpired;
+	}
+
+	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+		this.credentialsNonExpired = credentialsNonExpired;
 	}
 
 	public void eraseCredentials() {
@@ -113,6 +169,82 @@ public class User extends BaseDomain implements UserDetails, CredentialsContaine
 
 	public Collection<GrantedAuthority> getAuthorities() {
 		return authorities;
+	}
+
+	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+		this.authorities = Collections.unmodifiableSet(sortAuthorities(authorities));
+	}
+	
+	public String getSessionId() {
+		return sessionId;
+	}
+	
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
+	}
+
+	public Date getLastLogin() {
+		return lastLogin;
+	}
+	
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
+	}
+	
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public Date getHireDate() {
+		return hireDate;
+	}
+
+	public void setHireDate(Date hireDate) {
+		this.hireDate = hireDate;
+	}
+
+	public Branch getHireBranch() {
+		return hireBranch;
+	}
+
+	public void setHireBranch(Branch hireBranch) {
+		this.hireBranch = hireBranch;
+	}
+
+	public Branch getWorkingBranch() {
+		return workingBranch;
+	}
+
+	public void setWorkingBranch(Branch workingBranch) {
+		this.workingBranch = workingBranch;
+	}
+
+	public User getManager() {
+		return manager;
+	}
+
+	public void setManager(User manager) {
+		this.manager = manager;
 	}
 
 	// ~ Constructors
@@ -247,6 +379,8 @@ public class User extends BaseDomain implements UserDetails, CredentialsContaine
 		sb.append(super.toString()).append(": ");
 		sb.append("Username: ").append(this.username).append("; ");
 		sb.append("Password: [PROTECTED]; ");
+		sb.append("FirstName: ").append(this.firstName).append("; ");
+		sb.append("LastName: ").append(this.lastName).append("; ");
 		sb.append("Enabled: ").append(this.enabled).append("; ");
 		sb.append("AccountNonExpired: ").append(this.accountNonExpired).append("; ");
 		sb.append("credentialsNonExpired: ").append(this.credentialsNonExpired).append("; ");

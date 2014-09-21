@@ -1,13 +1,14 @@
 package com.tnc.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.tnc.dao.UserDao;
 import com.tnc.domain.Role;
+import com.tnc.domain.User;
 
 /**
  * A custom {@link UserDetailsService} where user information is retrieved from
@@ -28,7 +30,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private UserDao userDao;
-	
+
 	/**
 	 * Returns a populated {@link UserDetails} object. The username is first
 	 * retrieved from the database and then mapped to a {@link UserDetails}
@@ -36,21 +38,25 @@ public class CustomUserDetailsService implements UserDetailsService {
 	 */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		com.tnc.domain.User user = userDao.get(username.toLowerCase());
 
+		User user = userDao.get(username.toLowerCase());
 		if (user == null) {
 			throw new UsernameNotFoundException(username);
 		}
-		
+
 		try {
-			return new User(user.getUsername(), user.getPassword(), user.isEnabled(), user.isAccountNonExpired(),
-					user.isCredentialsNonExpired(), user.isAccountNonLocked(), this.getAuthorities(user));
+			
+//			SecurityContext securityContext = SecurityContextHolder.getContext();
+			
+			Calendar now = Calendar.getInstance(Locale.US);
+			user.setLastLogin(now.getTime());
+			user.setAuthorities(this.getAuthorities(user));
+			return user;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-		
+
 	}
-	
 
 	/**
 	 * Retrieves a collection of {@link GrantedAuthority} based on a numerical
@@ -75,7 +81,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	 */
 	public List<String> getRoles(com.tnc.domain.User domainUser) {
 		List<String> authorities = new ArrayList<String>();
-		
+
 		List<Role> roles = domainUser.getRoles();
 		for (Role role : roles) {
 			authorities.add(role.getRoleCode());
