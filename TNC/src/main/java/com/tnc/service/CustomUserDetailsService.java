@@ -1,10 +1,8 @@
 package com.tnc.service;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -38,24 +36,17 @@ public class CustomUserDetailsService implements UserDetailsService {
 	 */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-		User user = userDao.get(username.toLowerCase());
-		if (user == null) {
-			throw new UsernameNotFoundException(username);
-		}
-
 		try {
-			
-//			SecurityContext securityContext = SecurityContextHolder.getContext();
-			
-			Calendar now = Calendar.getInstance(Locale.US);
-			user.setLastLogin(now.getTime());
+			User user = userDao.get(username.toLowerCase());
+			if (user == null) {
+				throw new UsernameNotFoundException(username);
+			}
+
 			user.setAuthorities(this.getAuthorities(user));
 			return user;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-
 	}
 
 	/**

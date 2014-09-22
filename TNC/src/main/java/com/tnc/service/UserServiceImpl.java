@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -60,6 +61,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Secured(value = { "hasRole('Admin')" })
 	public User createUser(User user) {
 		Assert.isTrue(!userExists(user.getUsername()));
 		return userDao.saveOrUpdate(user);
@@ -135,14 +137,14 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userDao.get(username.toLowerCase());
-
-		if (user == null) {
-			throw new UsernameNotFoundException(username);
-		}
 		try {
-			return new User(user.getUsername(), user.getPassword(), user.isEnabled(), user.isAccountNonExpired(),
-					user.isCredentialsNonExpired(), user.isAccountNonLocked(), getAuthorities(user));
+			User user = userDao.get(username.toLowerCase());
+			if (user == null) {
+				throw new UsernameNotFoundException(username);
+			}
+
+			user.setAuthorities(this.getAuthorities(user));
+			return user;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -226,6 +228,5 @@ public class UserServiceImpl implements UserService {
 		}
 		return encodedPassword;
 	}
-	
-	
+
 }

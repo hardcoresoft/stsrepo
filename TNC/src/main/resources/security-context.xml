@@ -13,6 +13,13 @@
 	<security:global-method-security secured-annotations="enabled" />
 
 	<security:http auto-config="true" use-expressions="true">
+ 
+ <!--   
+ 		<security:intercept-url pattern="/resources/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <security:intercept-url pattern="/css/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <security:intercept-url pattern="/js/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+ -->
+ 
         <!-- Access Module -->
         <security:intercept-url pattern="/" access="permitAll" />
         <security:intercept-url pattern="/login" access="permitAll" />
@@ -22,21 +29,22 @@
         <security:intercept-url pattern="/common/**" access="hasRole('ROLE_USER')" />
         
         <!-- Management Module -->
-        <security:intercept-url pattern="/movie" access="permitAll" />
-        <security:intercept-url pattern="/fileUpload*" access="permitAll" />
         <security:intercept-url pattern="/contact/**" access="hasRole('ROLE_USER')" />
-        
-<!--         <security:intercept-url pattern="/css/main.css" access="IS_AUTHENTICATED_ANONYMOUSLY" /> -->
-<!--         <security:intercept-url pattern="/resources/**" access="IS_AUTHENTICATED_ANONYMOUSLY" /> -->
-
-<!--         <security:intercept-url pattern="/**" access="ROLE_USER" /> -->
+        <security:intercept-url pattern="/movie/**" access="permitAll" />
+        <security:intercept-url pattern="/upload/**" access="permitAll" />
 
         <!-- Override default login and logout pages -->
-        <security:form-login login-page="/login" default-target-url="/" authentication-failure-url="/login/failure" />
-                             
+        <security:form-login login-page="/login"  default-target-url="/" always-use-default-target="true"  
+        	authentication-failure-url="/login/failure" />
+        	
         <security:access-denied-handler error-page="/denied" />
-                             
-        <security:logout logout-url="/logout" invalidate-session="true" logout-success-url="/logout/success" />
+        
+        <security:logout logout-url="/logout" invalidate-session="true" logout-success-url="/logout/success" delete-cookies="JSESSIONID" />
+        
+        <session-management session-fixation-protection="newSession">
+        	<security:concurrency-control max-sessions="1" error-if-maximum-exceeded="false" expired-url="/duplicated" />
+        </session-management>
+        
     </security:http>
 
     <security:authentication-manager alias="authenticationManager">

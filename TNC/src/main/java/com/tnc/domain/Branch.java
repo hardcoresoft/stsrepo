@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Index;
+
 @Entity
 @Table(name = "BRANCH")
 public class Branch extends BaseDomain {
@@ -17,6 +19,7 @@ public class Branch extends BaseDomain {
 	@Column(name = "BRANCH_CODE", length = 20)
 	private String branchCode;
 	
+	@Index (name = "IX_BRANCH_BRANCH_NAME")
 	@Column(name = "BRANCH_NAME", length = 500)
 	private String branchName;
 	
