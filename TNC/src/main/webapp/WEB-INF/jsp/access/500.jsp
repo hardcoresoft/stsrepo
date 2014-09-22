@@ -6,13 +6,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Access Denied</title>
+<title>Error Occurs</title>
 </head>
 <body>
-	<h1>Access Denied</h1>
+	<h1>Error Occurs</h1>
 	<p>
-		<spring:message code="access.login.denied"
-			text="ไม่มีสิทธ์เข้าใช้งานระบบ" />
+		<spring:message code="access.error.500" text="Error Occurs" />
 	</p>
 </body>
 </html>
